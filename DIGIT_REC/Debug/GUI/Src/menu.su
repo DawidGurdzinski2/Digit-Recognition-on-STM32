@@ -1,0 +1,2 @@
+../GUI/Src/menu.c:8:6:refreshMenu	16	static
+../GUI/Src/menu.c:18:6:updateScreen	24	static

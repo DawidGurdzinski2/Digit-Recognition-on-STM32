@@ -1,0 +1,21 @@
+!SESSION 2023-03-12 20:13:06.006 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -data /home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32 -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-03-12 20:13:10.750
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-03-12 20:13:10.817
+!MESSAGE Log4j initialized with config file /home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/.metadata/.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-03-12 20:13:13.195
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-03-12 20:14:54.620
+!MESSAGE Indexed 'DIGIT_REC' (19 sources, 81 headers) in 2.44 sec: 4,259 declarations; 17,942 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.009%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-03-12 20:19:39.352
+!MESSAGE Indexed 'DIGIT_REC' (32 sources, 98 headers) in 1.28 sec: 5,325 declarations; 24,705 references; 2 unresolved inclusions; 1 syntax errors; 87 unresolved names (0.29%)

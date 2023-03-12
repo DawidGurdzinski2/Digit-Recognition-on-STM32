@@ -1,0 +1,6 @@
+../LCD/Src/ST7789V.c:11:6:Init	16	static
+../LCD/Src/ST7789V.c:43:6:Write_Command	16	static
+../LCD/Src/ST7789V.c:52:6:Write_Data_byte	16	static
+../LCD/Src/ST7789V.c:62:6:Write_Data	24	static
+../LCD/Src/ST7789V.c:83:6:Set_Rotation	8	static
+../LCD/Src/ST7789V.c:92:6:Set_Adress	40	static
