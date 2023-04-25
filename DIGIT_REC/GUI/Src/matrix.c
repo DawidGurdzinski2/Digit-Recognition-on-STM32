@@ -102,7 +102,7 @@ void boundaryConditions(uint8_t row , uint8_t column){
 		}
 		case 6:{// 6 - L LD D
 			putDataToArray(row, column-1, 64);//L
-			putDataToArray(row, column, 64);
+			putDataToArray(row, column, 255);
 			putDataToArray(row+1, column-1, 64);//LD
 			putDataToArray(row+1, column, 64);//D
 			break;
@@ -144,29 +144,43 @@ void boundaryConditions(uint8_t row , uint8_t column){
 
 }
 
-void putDataToArray(uint8_t row , uint8_t column,uint8_t value){
+void putDataToArray(uint8_t row , uint8_t column,uint16_t value){
+	if(Screen.Atributs[MATRIX_RESOLUTION*row+column]<=128 &&value!=255){
+		Screen.Atributs[MATRIX_RESOLUTION*row+column]+=value;
+	}
+	else if(Screen.Atributs[MATRIX_RESOLUTION*row+column]<=192 && value!=255){
+		Screen.Atributs[MATRIX_RESOLUTION*row+column]+=value-1;
+	}
+	else{
+		Screen.Atributs[MATRIX_RESOLUTION*row+column]=255;
+	}
+	ColorPixel(row, column);
+}
+
+void ColorPixel(uint16_t row , uint16_t column){
 	uint16_t X0=LCD_WIDTH-2*PIXEL_SIZE-PIXEL_SIZE*column;
 	uint16_t X1=LCD_WIDTH-PIXEL_SIZE-PIXEL_SIZE*column;
 	uint16_t Y0=LCD_HEIGHT-PIXEL_SIZE-PIXEL_SIZE*row;
 	uint16_t Y1=LCD_HEIGHT-2*PIXEL_SIZE-PIXEL_SIZE*row;
-	if(Screen.Atributs[MATRIX_RESOLUTION*row+column]<=64){
-		Screen.Atributs[MATRIX_RESOLUTION*row+column]+=value;
-		Draw_Rect(X0, Y0, X1, Y1, GREEN);
+	if(Screen.Atributs[MATRIX_RESOLUTION*row+column]==64){
+		Draw_Rect(X0, Y0, X1, Y1, SHAD4);
 	}
-	else if(Screen.Atributs[MATRIX_RESOLUTION*row+column]<=128){
-		Screen.Atributs[MATRIX_RESOLUTION*row+column]+=value;
-		Draw_Rect(X0, Y0, X1, Y1,BLUE);
+	else if(Screen.Atributs[MATRIX_RESOLUTION*row+column]==128){
+		Draw_Rect(X0, Y0, X1, Y1,SHAD3);
 	}
-	else if(Screen.Atributs[MATRIX_RESOLUTION*row+column]<=192){
-		Screen.Atributs[MATRIX_RESOLUTION*row+column]+=value;
-		Draw_Rect(X0, Y0, X1, Y1, PINK);
+	else if(Screen.Atributs[MATRIX_RESOLUTION*row+column]==192){
+		Draw_Rect(X0, Y0, X1, Y1, SHAD2);
+	}
+	else if(Screen.Atributs[MATRIX_RESOLUTION*row+column]==255){
+		Draw_Rect(X0, Y0, X1, Y1, SHAD1);
 	}
 	else{
-		Screen.Atributs[MATRIX_RESOLUTION*row+column]=255;
-		Draw_Rect(X0, Y0, X1, Y1, RED);
+
+		Draw_Rect(X0, Y0, X1, Y1, YELLOW);
 	}
 
-}
 
+
+}
 
 

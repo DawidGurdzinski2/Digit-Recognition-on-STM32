@@ -20,6 +20,7 @@
 #include "main.h"
 #include "dma.h"
 #include "spi.h"
+#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -53,6 +54,9 @@ extern struct matrix Screen;
 uint16_t PosX,PosY;
 uint16_t Xmod,Ymod;
 uint16_t Xrest,Yrest;
+
+float costam;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -86,7 +90,7 @@ int main(void)
   /* USER CODE END Init */
 
   /* Configure the system clock */
-  SystemClock_Config();
+  SystemClock_Config();//
 
   /* USER CODE BEGIN SysInit */
 
@@ -98,18 +102,27 @@ int main(void)
   MX_SPI1_Init();
   MX_SPI3_Init();
   MX_SPI4_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  HAL_TIM_Base_Start(&htim2);//1cnt =100 us
   Init();
   memset(Screen.Atributs,0,NUM_PIXELS);
   refreshMenu();
+
+  	// Draw_Rect(0, 0, 240, 320, WHITE);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  costam=7.8;
+
+	  costam=-8.9;
+	//  putDataToArray(0, 0, 64);
+	//  putDataToArray(0, 1,255);
 	  if(XPT2046_TouchGetCoordinates(&PosX,&PosY)){
-		  // Draw_Circle(PosX, PosY, 10, BLUE);
+		   //Draw_Circle(PosX, PosY, 4, MAGENTA);
 		  updateScreen(PosX, PosY);
 	 	}
     /* USER CODE END WHILE */
