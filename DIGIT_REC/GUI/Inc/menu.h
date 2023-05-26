@@ -1,11 +1,12 @@
 #ifndef MENU_H_
 #define MENU_H_
 #include <stdint.h>
+#include "ST7789V_GFX.h"
+#include "matrix.h"
+#include <string.h>
+#include "tim.h"
 
 
-
-#define LCD_WIDTH 240
-#define LCD_HEIGHT 320
 
 #define THEME
 
@@ -16,8 +17,8 @@
 #define MATRIXCOL 0xffff
 #endif
 
-void refreshMenu(void);
-void updateScreen(uint16_t ,uint16_t );
+void RefreshMenu(ST7789V *this,ChunkMatrix * cmtx);
+void LoopScreen(ST7789V *this,ChunkMatrix * cmtx,uint16_t X ,uint16_t Y);
 
 
 

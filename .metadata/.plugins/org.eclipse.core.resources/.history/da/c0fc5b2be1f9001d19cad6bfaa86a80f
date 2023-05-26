@@ -1,0 +1,15 @@
+#ifndef _DATACONVERSION_H_
+#define _DATACONVERSION_H_
+
+
+
+
+
+void Double_To_Uint(double vald,uint8_t valbuff);
+
+
+
+
+
+
+#endif

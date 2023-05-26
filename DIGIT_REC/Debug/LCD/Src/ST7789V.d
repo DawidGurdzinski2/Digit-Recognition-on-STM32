@@ -28,7 +28,7 @@ LCD/Src/ST7789V.o: ../LCD/Src/ST7789V.c ../LCD/Inc/ST7789V.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Core/Inc/spi.h ../LCD/Inc/ST7789V_GFX.h
+ ../Core/Inc/spi.h ../LCD/Inc/ST7789V_GFX.h ../LCD/Inc/ST7789V.h
 ../LCD/Inc/ST7789V.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/main.h:
@@ -62,3 +62,4 @@ LCD/Src/ST7789V.o: ../LCD/Src/ST7789V.c ../LCD/Inc/ST7789V.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Core/Inc/spi.h:
 ../LCD/Inc/ST7789V_GFX.h:
+../LCD/Inc/ST7789V.h:

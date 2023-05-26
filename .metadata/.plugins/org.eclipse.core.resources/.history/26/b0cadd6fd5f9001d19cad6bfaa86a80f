@@ -1,0 +1,31 @@
+#include "W25Q64Drv.h"
+
+
+
+HAL_StatusTypeDef W25Q64_Transmit_Data(MEMORY * this,uint8_t *data, uint16_t size)
+{
+	HAL_StatusTypeDef status;
+
+	status = HAL_SPI_Transmit(this->pSpi, data, size, 1000);
+
+	return status;
+}
+
+HAL_StatusTypeDef W25Q64_SPI_Receive_Data(MEMORY * this,uint8_t *data, uint16_t size)
+{
+	HAL_StatusTypeDef status;
+
+	status = HAL_SPI_Receive(this->pSpi, data, size, 1000);
+
+	return status;
+}
+
+void W25Q64_Set_ChipSelect_Low(void)
+{
+	HAL_GPIO_WritePin(Chip_Select_GPIO_Port, Chip_Select_Pin, GPIO_PIN_RESET);
+}
+
+void W25Q64_Set_ChipSelect_High(void)
+{
+	HAL_GPIO_WritePin(Chip_Select_GPIO_Port, Chip_Select_Pin, GPIO_PIN_SET);
+}

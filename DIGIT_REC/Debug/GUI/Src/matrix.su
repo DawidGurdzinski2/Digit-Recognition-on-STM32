@@ -1,4 +1,5 @@
-../GUI/Src/matrix.c:13:6:calcChunk	24	static
-../GUI/Src/matrix.c:44:6:boundaryConditions	24	static
-../GUI/Src/matrix.c:147:6:putDataToArray	16	static
-../GUI/Src/matrix.c:160:6:ColorPixel	40	static
+../GUI/Src/matrix.c:6:13:CreateChunkMatrix	32	static
+../GUI/Src/matrix.c:23:6:CalcChunk	32	static
+../GUI/Src/matrix.c:51:7:FillChunks	40	static
+../GUI/Src/matrix.c:146:6:PutDataToArray	32	static
+../GUI/Src/matrix.c:161:6:ColorChunks	40	static

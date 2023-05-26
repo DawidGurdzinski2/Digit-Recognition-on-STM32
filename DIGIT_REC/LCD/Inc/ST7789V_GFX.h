@@ -1,11 +1,13 @@
 #ifndef __ST7789_GFX_H
 #define __ST7789_GFX_H
+#include "ST7789V.h"
 
 
-void Draw_Rect(uint16_t ,uint16_t ,uint16_t ,uint16_t ,uint16_t );
-void Draw_Pixel(uint16_t ,uint16_t ,uint16_t );
-void Draw_Circle(uint16_t,uint16_t,uint16_t,uint16_t);
 
+
+void ST7789V_DrawPixel(ST7789V *this,uint16_t X,uint16_t Y,uint16_t color);
+void ST7789V_DrawRect(ST7789V *this,uint16_t X0,uint16_t Y0,uint16_t X1,uint16_t Y1,uint16_t color);
+void ST7789V_DrawCircle(ST7789V *this,uint16_t X ,uint16_t Y,uint16_t radius ,uint16_t color);
 
 
 //Colors

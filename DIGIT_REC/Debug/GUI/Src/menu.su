@@ -1,2 +1,2 @@
-../GUI/Src/menu.c:8:6:refreshMenu	16	static
-../GUI/Src/menu.c:19:6:updateScreen	24	static
+../GUI/Src/menu.c:5:6:RefreshMenu	24	static
+../GUI/Src/menu.c:13:6:LoopScreen	32	static

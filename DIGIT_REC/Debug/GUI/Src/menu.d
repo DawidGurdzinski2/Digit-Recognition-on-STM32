@@ -1,5 +1,5 @@
 GUI/Src/menu.o: ../GUI/Src/menu.c ../GUI/Inc/menu.h \
- ../LCD/Inc/ST7789V_GFX.h ../GUI/Inc/matrix.h ../Core/Inc/tim.h \
+ ../LCD/Inc/ST7789V_GFX.h ../LCD/Inc/ST7789V.h ../Core/Inc/gpio.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -27,11 +27,12 @@ GUI/Src/menu.o: ../GUI/Src/menu.c ../GUI/Inc/menu.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+ ../Core/Inc/spi.h ../GUI/Inc/matrix.h ../Core/Inc/tim.h
 ../GUI/Inc/menu.h:
 ../LCD/Inc/ST7789V_GFX.h:
-../GUI/Inc/matrix.h:
-../Core/Inc/tim.h:
+../LCD/Inc/ST7789V.h:
+../Core/Inc/gpio.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -61,3 +62,6 @@ GUI/Src/menu.o: ../GUI/Src/menu.c ../GUI/Inc/menu.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+../Core/Inc/spi.h:
+../GUI/Inc/matrix.h:
+../Core/Inc/tim.h:

@@ -1,0 +1,35 @@
+2023-05-25 01:10:04,340 [INFO] Activator:176 - 
+
+
+2023-05-25 01:10:04,343 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-25 01:10:08,784 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-05-25 01:10:29,749 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-05-25 01:10:29,749 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-05-25 01:10:29,749 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2023-05-25 20:41:53,828 [INFO] Activator:176 - 
+
+
+2023-05-25 20:41:53,830 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-25 20:41:59,081 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-05-25 20:42:20,320 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-05-25 20:42:20,321 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-05-25 20:42:20,321 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2023-05-25 20:44:35,527 [INFO] Activator:176 - 
+
+
+2023-05-25 20:44:35,529 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-25 20:44:40,817 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-05-25 20:45:01,543 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-05-25 20:45:01,543 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-05-25 20:45:01,544 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2023-05-25 20:49:18,529 [INFO] Activator:176 - 
+
+
+2023-05-25 20:49:18,531 [INFO] Activator:177 - !SESSION log4j initialized
+2023-05-25 20:49:23,964 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-05-25 20:49:44,811 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-05-25 20:49:44,812 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-05-25 20:49:44,812 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+2023-05-25 20:57:36,413 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] Warning: NLS missing message: ExternalToolsPreferencePage_External_tool_project_builders_migration_2 in: org.eclipse.ui.externaltools.internal.ui.ExternalToolsUIMessages
+2023-05-25 20:57:36,414 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] Warning: NLS missing message: ExternalToolsPreferencePage_Prompt_before_migrating_3 in: org.eclipse.ui.externaltools.internal.ui.ExternalToolsUIMessages
+2023-05-25 20:57:36,415 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] Warning: NLS missing message: ExternalToolsPreferencePage_1 in: org.eclipse.ui.externaltools.internal.ui.ExternalToolsUIMessages

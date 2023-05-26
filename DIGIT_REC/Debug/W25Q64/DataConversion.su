@@ -1,0 +1,6 @@
+../W25Q64/DataConversion.c:7:6:SplitDouble	32	static
+../W25Q64/DataConversion.c:23:8:ReconstructDouble	32	static
+../W25Q64/DataConversion.c:51:6:Splitfloat	24	static
+../W25Q64/DataConversion.c:63:7:ReconstructFloat	24	static
+../W25Q64/DataConversion.c:78:6:SplitfloatRETARDED	24	static
+../W25Q64/DataConversion.c:89:7:ReconstructFloatRETARDED	24	static

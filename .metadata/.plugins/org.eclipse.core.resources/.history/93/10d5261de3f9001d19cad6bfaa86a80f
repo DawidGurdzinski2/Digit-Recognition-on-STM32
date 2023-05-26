@@ -1,0 +1,15 @@
+#ifndef _DATACONVERSION_H_
+#define _DATACONVERSION_H_
+#include "stdint.h"
+
+
+
+
+void SplitDouble(double vald,uint8_t *valbuff);
+
+
+double ReconstructDouble(uint8_t* valbuff);
+
+
+
+#endif

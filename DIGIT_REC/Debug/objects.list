@@ -30,3 +30,5 @@
 "./LCD/Src/ST7789V.o"
 "./LCD/Src/ST7789V_GFX.o"
 "./LCD/Src/XPT2046.o"
+"./W25Q64/DataConversion.o"
+"./W25Q64/W25Q64Drv.o"

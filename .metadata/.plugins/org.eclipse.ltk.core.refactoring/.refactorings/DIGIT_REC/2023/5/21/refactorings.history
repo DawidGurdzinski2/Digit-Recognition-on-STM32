@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;DIGIT_REC/W25Q64/W25Q64Drv&apos; to &apos;W25Q64Drv.c&apos;" description="Rename resource &apos;W25Q64Drv&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="W25Q64/W25Q64Drv" name="W25Q64Drv.c" stamp="1684889666001" updateReferences="true"/>
+</session>

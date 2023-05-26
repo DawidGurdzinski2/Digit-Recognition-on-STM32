@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="W25Q64_ReadStatusRegister2"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="W25Q64_ReadStatusRegister2"/>
+			<item value="ST7789V_ColorChunks"/>
+			<item value="ST7789V_PutDataToArray"/>
+			<item value="ST7789V_FillChunks"/>
+			<item value="CalcChunk"/>
+			<item value="ST7789V_CalcChunk"/>
+			<item value="ST7789V_CreateChunkMatrix"/>
+			<item value="MATRIX_RESOLUTION"/>
+			<item value="Screen.Atributs"/>
+			<item value="cmtx.ChunkSize"/>
+			<item value="PIXEL_SIZE"/>
+			<item value="putDataToArray"/>
+			<item value="Draw_Rect"/>
+		</list>
+		<list key="replacehistory">
+			<item value="ColorChunks"/>
+			<item value="PutDataToArray"/>
+			<item value="FillChunks"/>
+			<item value="_Chunk"/>
+			<item value="CalcChunk"/>
+			<item value="CreateChunkMatrix"/>
+			<item value="&#x09;memset(Screen.Atributs,0,NUM_PIXELS);Z"/>
+			<item value="cmtx-&gt;Chunks"/>
+			<item value="cmtx-&gt;MatrixRes"/>
+			<item value="cmtx-&gt;ChunkSize"/>
+			<item value="cmtx.ChunkSize"/>
+			<item value="ST7789V_PutDataToArray"/>
+			<item value=" ST7789V_DrawRect"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="746"/>
+		<item key="DIALOG_Y_ORIGIN" value="231"/>
+		<item key="DIALOG_WIDTH" value="619"/>
+		<item key="DIALOG_HEIGHT" value="437"/>
+		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
+	</section>
+</section>

@@ -1,42 +1,431 @@
-13:09:14 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+10:13:56 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20908	     20	   2868	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:14:22 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20908	     20	   2868	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:16:10 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20908	     20	   2868	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:20:54 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
+  131 |   SplitDouble(test, testarr);
+      |   ^~~~~~~~~~~
+../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
+  132 |   testout=ReconstructDouble(testarr)*2;
+      |           ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
+  138 |   Splitfloat(testf, testarrf);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
+  139 |   testoutf=ReconstructFloat(testarrf);
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
+  135 |   float testoutf=0;
+      |         ^~~~~~~~
+../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
+  128 |   double testout=0;
+      |          ^~~~~~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  16976	     24	   2800	  19800	   4d58	DIGIT_REC.elf
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
  
-13:09:17 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+10:24:27 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  16976	     24	   2800	  19800	   4d58	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-13:09:52 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  16976	     24	   2800	  19800	   4d58	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-13:10:13 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
+  131 |   SplitDouble(test, testarr);
+      |   ^~~~~~~~~~~
+../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
+  132 |   testout=ReconstructDouble(testarr)*2;
+      |           ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
+  138 |   Splitfloat(testf, testarrf);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
+  139 |   testoutf=ReconstructFloat(testarrf);
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
+  135 |   float testoutf=0;
+      |         ^~~~~~~~
+../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
+  128 |   double testout=0;
+      |          ^~~~~~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  16976	     24	   2800	  19800	   4d58	DIGIT_REC.elf
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
+ 
+10:25:16 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:32:05 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
+  131 |   SplitDouble(test, testarr);
+      |   ^~~~~~~~~~~
+../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
+  132 |   testout=ReconstructDouble(testarr);
+      |           ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
+  138 |   Splitfloat(testf, testarrf);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
+  139 |   testoutf=ReconstructFloat(testarrf);
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
+  135 |   float testoutf=0;
+      |         ^~~~~~~~
+../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
+  128 |   double testout=0;
+      |          ^~~~~~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+10:32:56 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:35:39 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:39:39 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:40:12 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
+../W25Q64/DataConversion.c: In function 'SplitDouble':
+../W25Q64/DataConversion.c:17:18: warning: pointer targets in initialization of 'uint8_t *' {aka 'unsigned char *'} from 'char *' differ in signedness [-Wpointer-sign]
+   17 |  uint8_t * pvald=(char*)&vald;
+      |                  ^
+../W25Q64/DataConversion.c: In function 'Splitfloat':
+../W25Q64/DataConversion.c:52:8: warning: unused variable 'a' [-Wunused-variable]
+   52 |  float a=valf;
+      |        ^
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+10:42:15 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:43:36 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:44:22 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:45:02 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:51:31 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+10:53:18 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
+../W25Q64/DataConversion.c: In function 'SplitDouble':
+../W25Q64/DataConversion.c:17:18: warning: pointer targets in initialization of 'uint8_t *' {aka 'unsigned char *'} from 'char *' differ in signedness [-Wpointer-sign]
+   17 |  uint8_t * pvald=(char*)&vald;
+      |                  ^
+../W25Q64/DataConversion.c: In function 'Splitfloat':
+../W25Q64/DataConversion.c:52:8: warning: unused variable 'a' [-Wunused-variable]
+   52 |  float a=valf;
+      |        ^
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+20:42:09 **** Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
+  131 |   SplitDouble(test, testarr);
+      |   ^~~~~~~~~~~
+../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
+  132 |   testout=ReconstructDouble(testarr);
+      |           ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
+  138 |   Splitfloat(testf, testarrf);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
+  139 |   testoutf=ReconstructFloat(testarrf);
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
+  135 |   float testoutf=0;
+      |         ^~~~~~~~
+../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
+  128 |   double testout=0;
+      |          ^~~~~~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+20:42:25 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:43:22 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:43:43 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:43:55 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:44:04 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:44:50 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:45:23 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:49:37 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:50:03 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:51:38 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:52:12 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+20:55:38 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
+  131 |   SplitDouble(test, testarr);
+      |   ^~~~~~~~~~~
+../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
+  132 |   testout=ReconstructDouble(testarr);
+      |           ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:139:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
+  139 |   Splitfloat(test2f, testarrf);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:140:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
+  140 |   testoutf=ReconstructFloat(testarrf);
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
+  135 |   float testoutf=0;
+      |         ^~~~~~~~
+../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
+  128 |   double testout=0;
+      |          ^~~~~~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+05:05:55 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+05:06:08 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+05:08:01 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+05:11:58 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
+  131 |   SplitDouble(test, testarr);
+      |   ^~~~~~~~~~~
+../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
+  132 |   testout=ReconstructDouble(testarr);
+      |           ^~~~~~~~~~~~~~~~~
+../Core/Src/main.c:139:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
+  139 |   Splitfloat(test2f, testarrf);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:140:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
+  140 |   testoutf=ReconstructFloat(testarrf);
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
+  135 |   float testoutf=0;
+      |         ^~~~~~~~
+../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
+  128 |   double testout=0;
+      |          ^~~~~~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+05:13:03 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+Finished building: default.size.stdout
  

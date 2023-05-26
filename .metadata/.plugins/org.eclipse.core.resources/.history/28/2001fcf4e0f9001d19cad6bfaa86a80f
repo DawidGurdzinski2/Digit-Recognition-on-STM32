@@ -1,0 +1,11 @@
+#include "DataConversion.h"
+
+
+
+void Double_To_Uint(double vald,uint8_t valbuff){
+
+
+
+
+
+}

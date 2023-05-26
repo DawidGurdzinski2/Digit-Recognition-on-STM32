@@ -3,6 +3,12 @@
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
+  * @authors        : Dawid Gurdzinski , Lukasz Slowik
+  * @Project        : Rozpoznawanie pisma naturalnego/cyfr
+  * @Description    : Na ekranie dotykowym bedzie możliwość napisania/narysowania
+  * 				  cyfry w zakresie od 0-9 gdzie nastpenie popezez model sieci
+  * 				  neuronowej wgranej moduł pamięci W25Q64 zostanie zklasyfikowana
+  * 				  cyfra gdzie na ekranie wyświetlon
   ******************************************************************************
   * @attention
   *
@@ -31,6 +37,7 @@
 #include "XPT2046.h"
 #include "matrix.h"
 #include "menu.h"
+#include "W25Q64Drv.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,12 +57,16 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-extern struct matrix Screen;
+volatile float testf = 5.33;
+uint8_t buff[784];
+ChunkMatrix DataStruct;
+ST7789V ST7789VDrv;
+
 uint16_t PosX,PosY;
 uint16_t Xmod,Ymod;
 uint16_t Xrest,Yrest;
+MEMORY w25q64;
 
-float costam;
 
 /* USER CODE END PV */
 
@@ -90,7 +101,7 @@ int main(void)
   /* USER CODE END Init */
 
   /* Configure the system clock */
-  SystemClock_Config();//
+  SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
 
@@ -105,25 +116,42 @@ int main(void)
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim2);//1cnt =100 us
-  Init();
-  memset(Screen.Atributs,0,NUM_PIXELS);
-  refreshMenu();
+  ST7789V_Init(&ST7789VDrv);
+  DataStruct=CreateChunkMatrix(buff);
+  RefreshMenu(&ST7789VDrv, &DataStruct);
 
-  	// Draw_Rect(0, 0, 240, 320, WHITE);
+  uint8_t read_buffer[256];
+  uint8_t write_buffer[]="test";
+  W25Q64_Init(&w25q64);
+
+  double test = 5.33;
+  double testout=0;
+  uint8_t testarr[8];
+
+  SplitDouble(test, testarr);
+  testout=ReconstructDouble(testarr);
+
+
+  float testoutf=0;
+  float test2f=5.3;
+  uint8_t testarrf[4];
+
+  Splitfloat(test2f, testarrf);
+  testoutf=ReconstructFloat(testarrf);
+
+  W25Q64_SectorErase(&w25q64,0);
+  W25Q64_ReadDataBytes(&w25q64,0x0000, read_buffer, 256);
+  W25Q64_PageProgram(&w25q64,0x0000, write_buffer, sizeof(write_buffer));
+  W25Q64_ReadDataBytes(&w25q64,0x0000, read_buffer, 256);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  costam=7.8;
-
-	  costam=-8.9;
-	//  putDataToArray(0, 0, 64);
-	//  putDataToArray(0, 1,255);
 	  if(XPT2046_TouchGetCoordinates(&PosX,&PosY)){
-		   //Draw_Circle(PosX, PosY, 4, MAGENTA);
-		  updateScreen(PosX, PosY);
+		  LoopScreen(&ST7789VDrv, &DataStruct, PosX, PosY);
+
 	 	}
     /* USER CODE END WHILE */
 
@@ -149,15 +177,14 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 100;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 12;
+  RCC_OscInitStruct.PLL.PLLN = 96;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
