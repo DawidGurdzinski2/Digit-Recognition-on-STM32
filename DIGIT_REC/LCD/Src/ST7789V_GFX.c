@@ -1,24 +1,15 @@
 
 #include "ST7789V_GFX.h"
 #include "ST7789V.h"
-/*TODO
- *
- * Draw Line HOR
- * Draw Line VER
- * Draw Line
- * Draw Circle HOL
- * Draw Circle FIL +
- * Draw Font
- * Draw Text
- *
- *
- *
- *
+
+/*
+  * @brief rysuje pixel na ekranie
+  * @param  this - wskaznik na strukture ST7789V
+  * @param X - wspołzedne X pixela
+  * @param Y - wspołzedne Y pixela
+  * @param color - kolor pixela
+  * @retval None
 */
-
-
-
-
 
 void ST7789V_DrawPixel(ST7789V *this,uint16_t X,uint16_t Y,uint16_t color){
 	ST7789V_SetAdress(this, X, Y, X+1, Y+1);
@@ -29,6 +20,16 @@ void ST7789V_DrawPixel(ST7789V *this,uint16_t X,uint16_t Y,uint16_t color){
 
 }
 
+/*
+  * @brief rysuje prostokat na ekranie
+  * @param  this - wskaznik na strukture ST7789V
+  * @param X0 - wspołzedne X pierwszego pixela
+  * @param Y0 - wspołzedne Y pierwszego pixela
+  * @param X1 - wspołzedne X ostatniego pixela
+  * @param Y1 - wspołzedne Y ostatniego pixela
+  * @param color - kolor prostokąta
+  * @retval None
+*/
 
 void ST7789V_DrawRect(ST7789V *this,uint16_t X0,uint16_t Y0,uint16_t X1,uint16_t Y1,uint16_t color){
 	if(X0>X1){
@@ -70,7 +71,15 @@ void ST7789V_DrawRect(ST7789V *this,uint16_t X0,uint16_t Y0,uint16_t X1,uint16_t
 	ST7789V_WriteData(this, buffRest, restDataSize);
 }
 
-
+/*
+  * @brief rysuje koło na ekranie
+  * @param  this - wskaznik na strukture ST7789V
+  * @param X- wspołzedne X srodka kołą
+  * @param Y- wspołzedne Y srodka kołą
+  * @param radius - promien koła
+  * @param color - kolor prostokąta
+  * @retval None
+*/
 void ST7789V_DrawCircle(ST7789V *this,uint16_t X ,uint16_t Y,uint16_t radius ,uint16_t color){
 	int rad = radius;
 	int y = 0;
@@ -101,5 +110,34 @@ void ST7789V_DrawCircle(ST7789V *this,uint16_t X ,uint16_t Y,uint16_t radius ,ui
 	}
 }
 
+/**
+ * @brief Wpisuje znak na ekranie elo benc
+ * @param  X0- punkt startowy w wspołzendych x
+ * @param  Y0- punkt startowy w wspołzendych y
+ * @param  ch - znak jaki chemy wpisac
+ * @param font - struktura odpowiadajaca za rozmiar czczionki
+ * @param color - color znaku
+ * @param bgcolor - kolor tla
+ * @return  none
+ */
+
+
+void ST7789V_WriteChar(ST7789V * this,uint16_t X0, uint16_t Y0, char ch, FontDef font, uint16_t color, uint16_t bgcolor){
+	uint32_t i, b, j;
+	ST7789V_SetAdress(this,X0,Y0,X0 + font.width - 1,Y0 + font.height - 1);
+	for (i = 0; i < font.height; i++) {
+		b = font.data[(ch - 32) * font.height + i];
+		for (j = 0; j < font.width; j++) {
+			if ((b << j) & 0x8000) {
+				uint8_t data[] = {color >> 8, color & 0xFF};
+				ST7789V_WriteData( this,data, sizeof(data));
+			}
+			else {
+				uint8_t data[] = {bgcolor >> 8, bgcolor & 0xFF};
+				ST7789V_WriteData( this,data, sizeof(data));
+			}
+		}
+	}
+}
 
 

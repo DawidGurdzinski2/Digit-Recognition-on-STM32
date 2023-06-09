@@ -1,6 +1,6 @@
-DataConversion.c:7:6:SplitDouble	2
-DataConversion.c:23:8:ReconstructDouble	2
-DataConversion.c:51:6:Splitfloat	2
-DataConversion.c:63:7:ReconstructFloat	2
-DataConversion.c:78:6:SplitfloatRETARDED	2
-DataConversion.c:89:7:ReconstructFloatRETARDED	2
+DataConversion.c:12:6:SplitDouble	2
+DataConversion.c:23:9:ReconstructDouble	2
+DataConversion.c:38:6:SplitDoubleUnion	2
+DataConversion.c:49:9:ReconstructDoubleUnion	2
+DataConversion.c:61:9:Hex_Chars_To_Hex	1
+DataConversion.c:74:6:Invert_Array	3

@@ -1,0 +1,6 @@
+../SDCARD/SDDrv.c:16:6:INIT_NETINFO	16	static
+../SDCARD/SDDrv.c:48:6:mountSDcard	16	static
+../SDCARD/SDDrv.c:62:6:openFile	24	static
+../SDCARD/SDDrv.c:72:6:closeFile	16	static
+../SDCARD/SDDrv.c:84:6:writeDataPacked	16	static
+../SDCARD/SDDrv.c:94:6:readDataPacked	16	static

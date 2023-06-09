@@ -1,0 +1,35 @@
+#ifndef _NEURALNETWORK_H_
+#define _NEURALNETWORK_H_
+#include "stdint.h"
+
+#define INPUT_SIZE 784 //28*28
+#define OUTPUT_SIZE 10
+
+
+//input_vector and weight_vector maja rozmiar input num  a ilosc weight_vector i biasow
+//zapisanych w pamieci dla danej warstwy jest rowna neuron_num
+
+
+typedef struct _Linear{
+	uint16_t input_num;
+	uint16_t nueron_num;
+}Linear;
+
+
+typedef struct _NET{
+	Linear * first_Layer;
+	Linear * second_Layer;
+	Linear * third_Layer;
+	double Outputbuff[OUTPUT_SIZE];
+}NET;
+
+void Init_Layer(Linear * this,uint16_t input_size,uint16_t Net_size);
+
+void Init_Net(NET * this,Linear * lin1,Linear* lin2,Linear * lin3);
+
+
+
+
+
+
+#endif

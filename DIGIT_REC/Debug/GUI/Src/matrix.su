@@ -1,5 +1,5 @@
-../GUI/Src/matrix.c:6:13:CreateChunkMatrix	32	static
-../GUI/Src/matrix.c:23:6:CalcChunk	32	static
-../GUI/Src/matrix.c:51:7:FillChunks	40	static
-../GUI/Src/matrix.c:146:6:PutDataToArray	32	static
-../GUI/Src/matrix.c:161:6:ColorChunks	40	static
+../GUI/Src/matrix.c:10:13:CreateChunkMatrix	32	static
+../GUI/Src/matrix.c:34:6:CalcChunk	32	static
+../GUI/Src/matrix.c:60:7:FillChunks	40	static
+../GUI/Src/matrix.c:163:6:PutDataToArray	32	static
+../GUI/Src/matrix.c:185:6:ColorChunks	40	static

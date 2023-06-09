@@ -1,431 +1,994 @@
-10:13:56 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:39:47 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20908	     20	   2868	  23796	   5cf4	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:14:22 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20908	     20	   2868	  23796	   5cf4	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:16:10 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20908	     20	   2868	  23796	   5cf4	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:20:54 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
-  131 |   SplitDouble(test, testarr);
-      |   ^~~~~~~~~~~
-../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
-  132 |   testout=ReconstructDouble(testarr)*2;
-      |           ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
-  138 |   Splitfloat(testf, testarrf);
-      |   ^~~~~~~~~~
-../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
-  139 |   testoutf=ReconstructFloat(testarrf);
-      |            ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
-  135 |   float testoutf=0;
-      |         ^~~~~~~~
-../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
-  128 |   double testout=0;
-      |          ^~~~~~~
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+  55564	    128	  45320	 101012	  18a94	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
  
-10:24:27 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:41:38 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
+arm-none-eabi-gcc "../SIALGORITHMS/ForwardPass.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SIALGORITHMS/ForwardPass.d" -MT"SIALGORITHMS/ForwardPass.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SIALGORITHMS/ForwardPass.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
-  131 |   SplitDouble(test, testarr);
-      |   ^~~~~~~~~~~
-../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
-  132 |   testout=ReconstructDouble(testarr)*2;
-      |           ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
-  138 |   Splitfloat(testf, testarrf);
-      |   ^~~~~~~~~~
-../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
-  139 |   testoutf=ReconstructFloat(testarrf);
-      |            ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
-  135 |   float testoutf=0;
-      |         ^~~~~~~~
-../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
-  128 |   double testout=0;
-      |          ^~~~~~~
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+  55712	    128	  45320	 101160	  18b28	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
  
-10:25:16 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:42:19 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
 arm-none-eabi-size   DIGIT_REC.elf 
    text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+  55712	    128	  45320	 101160	  18b28	DIGIT_REC.elf
 Finished building: default.size.stdout
  
-10:32:05 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:42:55 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
-  131 |   SplitDouble(test, testarr);
-      |   ^~~~~~~~~~~
-../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
-  132 |   testout=ReconstructDouble(testarr);
-      |           ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
-  138 |   Splitfloat(testf, testarrf);
-      |   ^~~~~~~~~~
-../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
-  139 |   testoutf=ReconstructFloat(testarrf);
-      |            ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
-  135 |   float testoutf=0;
-      |         ^~~~~~~~
-../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
-  128 |   double testout=0;
-      |          ^~~~~~~
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
+  55684	    136	  45320	 101140	  18b14	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
  
-10:32:56 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:43:38 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:35:39 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:39:39 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:40:12 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
-../W25Q64/DataConversion.c: In function 'SplitDouble':
-../W25Q64/DataConversion.c:17:18: warning: pointer targets in initialization of 'uint8_t *' {aka 'unsigned char *'} from 'char *' differ in signedness [-Wpointer-sign]
-   17 |  uint8_t * pvald=(char*)&vald;
-      |                  ^
-../W25Q64/DataConversion.c: In function 'Splitfloat':
-../W25Q64/DataConversion.c:52:8: warning: unused variable 'a' [-Wunused-variable]
-   52 |  float a=valf;
-      |        ^
-arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DIGIT_REC.elf
- 
-arm-none-eabi-size   DIGIT_REC.elf 
-arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
-   text	   data	    bss	    dec	    hex	filename
-  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-Finished building: DIGIT_REC.list
- 
-10:42:15 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:43:36 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:44:22 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:45:02 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:51:31 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20912	     24	   2872	  23808	   5d00	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-10:53:18 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
-../W25Q64/DataConversion.c: In function 'SplitDouble':
-../W25Q64/DataConversion.c:17:18: warning: pointer targets in initialization of 'uint8_t *' {aka 'unsigned char *'} from 'char *' differ in signedness [-Wpointer-sign]
-   17 |  uint8_t * pvald=(char*)&vald;
-      |                  ^
-../W25Q64/DataConversion.c: In function 'Splitfloat':
-../W25Q64/DataConversion.c:52:8: warning: unused variable 'a' [-Wunused-variable]
-   52 |  float a=valf;
-      |        ^
-arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: DIGIT_REC.elf
- 
-arm-none-eabi-size   DIGIT_REC.elf 
-arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
-   text	   data	    bss	    dec	    hex	filename
-  20900	     24	   2872	  23796	   5cf4	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-Finished building: DIGIT_REC.list
- 
-20:42:09 **** Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
-  131 |   SplitDouble(test, testarr);
-      |   ^~~~~~~~~~~
-../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
-  132 |   testout=ReconstructDouble(testarr);
-      |           ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:138:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
-  138 |   Splitfloat(testf, testarrf);
-      |   ^~~~~~~~~~
-../Core/Src/main.c:139:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
-  139 |   testoutf=ReconstructFloat(testarrf);
-      |            ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
-  135 |   float testoutf=0;
-      |         ^~~~~~~~
-../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
-  128 |   double testout=0;
-      |          ^~~~~~~
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+  55712	    128	  45320	 101160	  18b28	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
  
-20:42:25 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:44:32 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
 arm-none-eabi-size   DIGIT_REC.elf 
    text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+  55712	    128	  45320	 101160	  18b28	DIGIT_REC.elf
 Finished building: default.size.stdout
  
-20:43:22 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:45:04 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../W25Q64/DataConversion.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"W25Q64/DataConversion.d" -MT"W25Q64/DataConversion.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "W25Q64/DataConversion.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  55716	    128	  45320	 101164	  18b2c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+00:45:21 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
 arm-none-eabi-size   DIGIT_REC.elf 
    text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
+  55716	    128	  45320	 101164	  18b2c	DIGIT_REC.elf
 Finished building: default.size.stdout
  
-20:43:43 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:45:41 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:43:55 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:44:04 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:44:50 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:45:23 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:49:37 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:50:03 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:51:38 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:52:12 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     24	   2872	  23792	   5cf0	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-20:55:38 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
-  131 |   SplitDouble(test, testarr);
-      |   ^~~~~~~~~~~
-../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
-  132 |   testout=ReconstructDouble(testarr);
-      |           ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:139:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
-  139 |   Splitfloat(test2f, testarrf);
-      |   ^~~~~~~~~~
-../Core/Src/main.c:140:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
-  140 |   testoutf=ReconstructFloat(testarrf);
-      |            ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
-  135 |   float testoutf=0;
-      |         ^~~~~~~~
-../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
-  128 |   double testout=0;
-      |          ^~~~~~~
+../Core/Src/main.c:145:29: warning: excess elements in array initializer
+  145 | uint8_t kutas[5]={1,2,3,4,5,6};
+      |                             ^
+../Core/Src/main.c:145:29: note: (near initialization for 'kutas')
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+  55716	    128	  45320	 101164	  18b2c	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
  
-05:05:55 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:46:08 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
 arm-none-eabi-size   DIGIT_REC.elf 
    text	   data	    bss	    dec	    hex	filename
-  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+  55716	    128	  45320	 101164	  18b2c	DIGIT_REC.elf
 Finished building: default.size.stdout
  
-05:06:08 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:46:28 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-05:08:01 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-size   DIGIT_REC.elf 
-   text	   data	    bss	    dec	    hex	filename
-  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
-Finished building: default.size.stdout
- 
-05:11:58 **** Incremental Build of configuration Debug for project DIGIT_REC ****
-make -j8 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:131:3: warning: implicit declaration of function 'SplitDouble' [-Wimplicit-function-declaration]
-  131 |   SplitDouble(test, testarr);
-      |   ^~~~~~~~~~~
-../Core/Src/main.c:132:11: warning: implicit declaration of function 'ReconstructDouble' [-Wimplicit-function-declaration]
-  132 |   testout=ReconstructDouble(testarr);
-      |           ^~~~~~~~~~~~~~~~~
-../Core/Src/main.c:139:3: warning: implicit declaration of function 'Splitfloat' [-Wimplicit-function-declaration]
-  139 |   Splitfloat(test2f, testarrf);
-      |   ^~~~~~~~~~
-../Core/Src/main.c:140:12: warning: implicit declaration of function 'ReconstructFloat' [-Wimplicit-function-declaration]
-  140 |   testoutf=ReconstructFloat(testarrf);
-      |            ^~~~~~~~~~~~~~~~
-../Core/Src/main.c:135:9: warning: variable 'testoutf' set but not used [-Wunused-but-set-variable]
-  135 |   float testoutf=0;
-      |         ^~~~~~~~
-../Core/Src/main.c:128:10: warning: variable 'testout' set but not used [-Wunused-but-set-variable]
-  128 |   double testout=0;
-      |          ^~~~~~~
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
 arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: DIGIT_REC.elf
  
 arm-none-eabi-size   DIGIT_REC.elf 
 arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
    text	   data	    bss	    dec	    hex	filename
-  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+  55716	    128	  45320	 101164	  18b2c	DIGIT_REC.elf
 Finished building: default.size.stdout
  
 Finished building: DIGIT_REC.list
  
-05:13:03 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+00:47:46 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:247:6: warning: implicit declaration of function 'FP_Load_Input'; did you mean 'FP_Load_B3'? [-Wimplicit-function-declaration]
+  247 |      FP_Load_Input(&SI_algorithm, buff);
+      |      ^~~~~~~~~~~~~
+      |      FP_Load_B3
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  55764	    128	  45320	 101212	  18b5c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+00:50:34 **** Incremental Build of configuration Debug for project DIGIT_REC ****
 make -j8 all 
 arm-none-eabi-size   DIGIT_REC.elf 
    text	   data	    bss	    dec	    hex	filename
-  20896	     20	   2868	  23784	   5ce8	DIGIT_REC.elf
+  55764	    128	  45320	 101212	  18b5c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+00:52:12 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:247:6: warning: implicit declaration of function 'FP_Load_Input'; did you mean 'FP_Load_B3'? [-Wimplicit-function-declaration]
+  247 |      FP_Load_Input(&SI_algorithm, buff);
+      |      ^~~~~~~~~~~~~
+      |      FP_Load_B3
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  55764	    128	  45320	 101212	  18b5c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:00:56 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:247:6: warning: implicit declaration of function 'FP_Load_Input'; did you mean 'FP_Load_B3'? [-Wimplicit-function-declaration]
+  247 |      FP_Load_Input(&SI_algorithm, buff);
+      |      ^~~~~~~~~~~~~
+      |      FP_Load_B3
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  55784	    128	  45320	 101232	  18b70	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:01:15 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  55784	    128	  45320	 101232	  18b70	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+01:01:45 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  55784	    128	  45320	 101232	  18b70	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+01:02:02 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  55784	    128	  45320	 101232	  18b70	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+01:03:07 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../SIALGORITHMS/ForwardPass.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SIALGORITHMS/ForwardPass.d" -MT"SIALGORITHMS/ForwardPass.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SIALGORITHMS/ForwardPass.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:247:35: warning: passing argument 2 of 'FP_Load_Input' from incompatible pointer type [-Wincompatible-pointer-types]
+  247 |      FP_Load_Input(&SI_algorithm, buff);
+      |                                   ^~~~
+      |                                   |
+      |                                   uint8_t * {aka unsigned char *}
+In file included from ../Core/Src/main.c:46:
+/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS/ForwardPass.h:24:48: note: expected 'double *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+   24 | void FP_Load_Input(ForwardPass * this,double * buff);
+      |                                       ~~~~~~~~~^~~~
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  55784	    128	  45320	 101232	  18b70	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:04:31 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../SIALGORITHMS/ForwardPass.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SIALGORITHMS/ForwardPass.d" -MT"SIALGORITHMS/ForwardPass.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SIALGORITHMS/ForwardPass.o"
+../SIALGORITHMS/ForwardPass.c:49:6: error: conflicting types for 'FP_Load_Input'
+   49 | void FP_Load_Input(ForwardPass * this,uint8_t * buff){
+      |      ^~~~~~~~~~~~~
+In file included from ../SIALGORITHMS/ForwardPass.c:1:
+../SIALGORITHMS/ForwardPass.h:24:6: note: previous declaration of 'FP_Load_Input' was here
+   24 | void FP_Load_Input(ForwardPass * this,double * buff);
+      |      ^~~~~~~~~~~~~
+make: *** [SIALGORITHMS/subdir.mk:22: SIALGORITHMS/ForwardPass.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+01:04:41 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../SIALGORITHMS/ForwardPass.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SIALGORITHMS/ForwardPass.d" -MT"SIALGORITHMS/ForwardPass.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SIALGORITHMS/ForwardPass.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  56280	    128	  45320	 101728	  18d60	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:04:48 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  56280	    128	  45320	 101728	  18d60	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+01:06:23 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  56280	    128	  45320	 101728	  18d60	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+01:06:57 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  56280	    128	  45320	 101728	  18d60	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+01:10:47 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:169:4: warning: implicit declaration of function 'INIT_NETINFO' [-Wimplicit-function-declaration]
+  169 |    INIT_NETINFO(&net_info);
+      |    ^~~~~~~~~~~~
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  56424	    128	  45320	 101872	  18df0	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:11:53 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../SIALGORITHMS/ForwardPass.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SIALGORITHMS/ForwardPass.d" -MT"SIALGORITHMS/ForwardPass.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SIALGORITHMS/ForwardPass.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  57608	    128	  45320	 103056	  19290	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:21:44 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:169:4: warning: implicit declaration of function 'INIT_NETINFO' [-Wimplicit-function-declaration]
+  169 |    INIT_NETINFO(&net_info);
+      |    ^~~~~~~~~~~~
+../Core/Src/main.c:256:32: error: 'result' undeclared (first use in this function)
+  256 |      Print_Result(&ST7789VDrv, result);
+      |                                ^~~~~~
+../Core/Src/main.c:256:32: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+01:21:53 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:169:4: warning: implicit declaration of function 'INIT_NETINFO' [-Wimplicit-function-declaration]
+  169 |    INIT_NETINFO(&net_info);
+      |    ^~~~~~~~~~~~
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  51956	    128	  45320	  97404	  17c7c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:22:46 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  51960	    128	  45320	  97408	  17c80	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:23:14 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:169:4: warning: implicit declaration of function 'INIT_NETINFO' [-Wimplicit-function-declaration]
+  169 |    INIT_NETINFO(&net_info);
+      |    ^~~~~~~~~~~~
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  51960	    128	  45320	  97408	  17c80	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:27:55 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:169:4: warning: implicit declaration of function 'INIT_NETINFO' [-Wimplicit-function-declaration]
+  169 |    INIT_NETINFO(&net_info);
+      |    ^~~~~~~~~~~~
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52000	    128	  45320	  97448	  17ca8	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:28:20 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../SIALGORITHMS/ForwardPass.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SIALGORITHMS/ForwardPass.d" -MT"SIALGORITHMS/ForwardPass.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SIALGORITHMS/ForwardPass.o"
+arm-none-eabi-gcc "../SDCARD/SDDrv.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SDCARD/SDDrv.d" -MT"SDCARD/SDDrv.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SDCARD/SDDrv.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52000	    128	  45320	  97448	  17ca8	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:29:42 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52052	    128	  45320	  97500	  17cdc	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:31:15 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+../GUI/Src/menu.c: In function 'Print_Info_Calc':
+../GUI/Src/menu.c:112:11: error: redefinition of 'X0'
+  112 |  uint16_t X0=50;
+      |           ^~
+../GUI/Src/menu.c:106:11: note: previous definition of 'X0' was here
+  106 |  uint16_t X0=50;
+      |           ^~
+../GUI/Src/menu.c:113:11: error: redefinition of 'Y0'
+  113 |  uint16_t Y0=173;
+      |           ^~
+../GUI/Src/menu.c:107:11: note: previous definition of 'Y0' was here
+  107 |  uint16_t Y0=147;
+      |           ^~
+make: *** [GUI/Src/subdir.mk:22: GUI/Src/menu.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+01:31:26 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52152	    128	  45320	  97600	  17d40	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:32:11 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52152	    128	  45320	  97600	  17d40	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:33:04 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52152	    128	  45320	  97600	  17d40	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:33:15 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  52152	    128	  45320	  97600	  17d40	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+01:33:43 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52152	    128	  45320	  97600	  17d40	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:35:44 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52448	    128	  45320	  97896	  17e68	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:36:23 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52448	    128	  45320	  97896	  17e68	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:37:25 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52456	    128	  45320	  97904	  17e70	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:42:59 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52756	    128	  45320	  98204	  17f9c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:47:49 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:253:23: error: 'this' undeclared (first use in this function)
+  253 |      ST7789V_DrawRect(this, 30, 90, 70 ,130, RED);
+      |                       ^~~~
+../Core/Src/main.c:253:23: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+01:48:06 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52844	    128	  45320	  98292	  17ff4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:50:46 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52844	    128	  45320	  98292	  17ff4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+01:51:33 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52844	    128	  45320	  98292	  17ff4	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:01:08 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../GUI/Src/menu.c: In function 'Print_Proc_10':
+../GUI/Src/menu.c:184:22: error: 'ST7789VDrv' undeclared (first use in this function); did you mean 'ST7789V'?
+  184 |    ST7789V_DrawRect(&ST7789VDrv, start+(i*(size+gap)), Y0, start+(i*(size)) ,Y0+10, RED);
+      |                      ^~~~~~~~~~
+      |                      ST7789V
+../GUI/Src/menu.c:184:22: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [GUI/Src/subdir.mk:22: GUI/Src/menu.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+02:01:25 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52976	    128	  45320	  98424	  18078	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:02:05 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52900	    128	  45320	  98348	  1802c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:04:27 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52900	    128	  45320	  98348	  1802c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:04:54 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52988	    128	  45320	  98436	  18084	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:05:57 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  52992	    128	  45320	  98440	  18088	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:07:00 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  53000	    128	  45320	  98448	  18090	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:07:20 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  53000	    128	  45320	  98448	  18090	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:07:58 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  53000	    128	  45320	  98448	  18090	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:12:36 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../GUI/Src/menu.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"GUI/Src/menu.d" -MT"GUI/Src/menu.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "GUI/Src/menu.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: warning: unused variable 'hex' [-Wunused-variable]
+  156 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  53116	    128	  45320	  98564	  18104	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:20:22 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:237:14: warning: unused variable 'result' [-Wunused-variable]
+  237 |      uint8_t result =FP_Retrun_Result(&SI_algorithm);
+      |              ^~~~~~
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  58876	    128	  45320	 104324	  19784	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:23:10 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  58860	    128	  45320	 104308	  19774	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:31:20 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../SIALGORITHMS/ForwardPass.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SIALGORITHMS/ForwardPass.d" -MT"SIALGORITHMS/ForwardPass.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SIALGORITHMS/ForwardPass.o"
+arm-none-eabi-gcc "../SDCARD/SDDrv.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"SDCARD/SDDrv.d" -MT"SDCARD/SDDrv.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "SDCARD/SDDrv.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:162:4: error: too many arguments to function 'readDataPacked'
+  162 |    readDataPacked(&SDcard, myfilename,  512);
+      |    ^~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:43:
+/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD/SDDrv.h:58:6: note: declared here
+   58 | void readDataPacked(SD_Iterface * this,const TCHAR* path);
+      |      ^~~~~~~~~~~~~~
+../Core/Src/main.c:163:4: error: too many arguments to function 'readDataPacked'
+  163 |    readDataPacked(&SDcard, myfilename,  512);
+      |    ^~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:43:
+/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD/SDDrv.h:58:6: note: declared here
+   58 | void readDataPacked(SD_Iterface * this,const TCHAR* path);
+      |      ^~~~~~~~~~~~~~
+../Core/Src/main.c:164:4: error: too many arguments to function 'readDataPacked'
+  164 |    readDataPacked(&SDcard, myfilename,  512);
+      |    ^~~~~~~~~~~~~~
+In file included from ../Core/Src/main.c:43:
+/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD/SDDrv.h:58:6: note: declared here
+   58 | void readDataPacked(SD_Iterface * this,const TCHAR* path);
+      |      ^~~~~~~~~~~~~~
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+make: *** [Core/Src/subdir.mk:49: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+02:31:33 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:157:13: warning: unused variable 'hex' [-Wunused-variable]
+  157 |     uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+      |             ^~~
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  58852	    128	  45320	 104300	  1976c	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:32:46 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../GUI/Inc -I../LCD/Inc -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/W25Q64" -I../FATFS/Target -I../FATFS/App -I../Middlewares/Third_Party/FatFs/src -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SDCARD" -I"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/SIALGORITHMS" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "DIGIT_REC.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/dawid/Desktop/Programing and other/GITHUB/Digit-Recognition-on-STM32/DIGIT_REC/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DIGIT_REC.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DIGIT_REC.elf
+ 
+arm-none-eabi-size   DIGIT_REC.elf 
+arm-none-eabi-objdump -h -S  DIGIT_REC.elf  > "DIGIT_REC.list"
+   text	   data	    bss	    dec	    hex	filename
+  42236	     28	  36192	  78456	  13278	DIGIT_REC.elf
+Finished building: default.size.stdout
+ 
+Finished building: DIGIT_REC.list
+ 
+02:32:51 **** Incremental Build of configuration Debug for project DIGIT_REC ****
+make -j8 all 
+arm-none-eabi-size   DIGIT_REC.elf 
+   text	   data	    bss	    dec	    hex	filename
+  42236	     28	  36192	  78456	  13278	DIGIT_REC.elf
 Finished building: default.size.stdout
  

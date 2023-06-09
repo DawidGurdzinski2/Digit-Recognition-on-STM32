@@ -1,0 +1,25 @@
+#ifndef _FORWARDPASS_H_
+#define _FORWARDPASS_H_
+#include "NeuralNetwork.h"
+#include "W25Q64Drv.h"
+#include "SDDrv.h"
+#include "DataConversion.h"
+
+#define MAX_DATA_VECTOR_SIZE 1024
+
+typedef struct _ForwardPass{
+	NET * NeuralNetwork;
+	NET_INFO * net_data;
+	MEMORY * w28q64;
+	double DATABUF[MAX_DATA_VECTOR_SIZE];
+	double WEIGHTBUFF[MAX_DATA_VECTOR_SIZE];
+	double LAYEROUTBUF[MAX_DATA_VECTOR_SIZE];
+	double BIAS;
+
+
+}ForwardPass;
+
+
+void Init_ForwardPass(ForwardPass * this,NET * net,NET_INFO * ndata,MEMORY * mem);
+
+#endif

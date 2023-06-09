@@ -1,0 +1,16 @@
+#include "NeuralNetwork.h"
+
+
+void Init_Layer(Linear * this,uint16_t Net_size){
+	this->input_num=INPUT_SIZE;
+	this->nueron_num=Net_size;
+	this->bias=0;
+}
+
+void Init_Net(NET * this,Linear * lin1,Linear* lin2,Linear * lin3){
+	this->first_Layer=lin1;
+	this->second_Layer=lin2;
+	this->third_Layer=lin3;
+
+
+}

@@ -1,6 +1,12 @@
 #include "W25Q64Drv.h"
 
-
+/*
+  * @brief  transmituje dane po interfejsie SPI
+  * @param  this - wskaznik na strukture MEMORY
+  * @param  data - wskaznik na tablice z danymi do wpisania
+  * @param  size - rozmiar tej tablicy
+  * @retval HAL_Status
+*/
 
 HAL_StatusTypeDef W25Q64_SPI_Transmit_Data(MEMORY * this,uint8_t *data, uint16_t size){
 	HAL_StatusTypeDef status;
@@ -9,6 +15,13 @@ HAL_StatusTypeDef W25Q64_SPI_Transmit_Data(MEMORY * this,uint8_t *data, uint16_t
 
 	return status;
 }
+/*
+  * @brief  odczytuje  dane po interfejsie SPI
+  * @param  this - wskaznik na strukture MEMORY
+  * @param  data - wskaznik na tablice dla danych do odczytania
+  * @param  size - rozmiar tej tablicy
+  * @retval HAL_Status
+*/
 
 HAL_StatusTypeDef W25Q64_SPI_Receive_Data(MEMORY * this,uint8_t *data, uint16_t size){
 	HAL_StatusTypeDef status;
@@ -18,13 +31,28 @@ HAL_StatusTypeDef W25Q64_SPI_Receive_Data(MEMORY * this,uint8_t *data, uint16_t 
 	return status;
 }
 
+/*
+  * @brief  ustawia pin CS na stan niski
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
+
 void W25Q64_Set_ChipSelect_Low(MEMORY * this){
 	HAL_GPIO_WritePin(this->CS_port, this->CS_Pin, GPIO_PIN_RESET);
 }
-
+/*
+  * @brief  ustawia pin CS na stan wysoki
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
 void W25Q64_Set_ChipSelect_High(MEMORY * this){
 	HAL_GPIO_WritePin(this->CS_port, this->CS_Pin, GPIO_PIN_SET);
 }
+/*
+  * @brief  Inicjalizuje strukture pamieci
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval Hal_Status
+*/
 
 uint8_t W25Q64_Init(MEMORY * this){
 	this->CS_port=W25Q64_CS_GPIO_Port;
@@ -41,7 +69,11 @@ uint8_t W25Q64_Init(MEMORY * this){
 		return HAL_ERROR;
 }
 
-
+/*
+  * @brief  Resetuje pamiec
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
 void W25Q64_ResetFlash(MEMORY * this){
 	uint8_t data_to_send[] = { W25Q64_ENABLE_RESET	, W25Q64_RESET };
 
@@ -53,7 +85,11 @@ void W25Q64_ResetFlash(MEMORY * this){
 	W25Q64_SPI_Transmit_Data(this,&data_to_send[1], 1);
 	W25Q64_Set_ChipSelect_High(this);
 }
-
+/*
+  * @brief  odczytuje informacje z pamieci o ID, typie pamieci i jej pojemnosci
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
 void W25Q64_get_JEDEC_ID(MEMORY * this){
 	uint8_t data_to_send = 0x9F;
 	uint8_t receive_data[3] = { 0, 0, 0 };
@@ -70,7 +106,12 @@ void W25Q64_get_JEDEC_ID(MEMORY * this){
 	this->capacity = receive_data[2];
 }
 
-
+/*
+  * @brief  Podaje odpowiednia komende do pamiecie któ©a jest konieczna do czyszczenia,wpisywania i
+  * 		odczytywania w pamieci
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
 
 void W25Q64_WriteEnable(MEMORY * this){
 	uint8_t data_to_send =  W25Q64_WRITE_ENABLE;
@@ -79,6 +120,11 @@ void W25Q64_WriteEnable(MEMORY * this){
 	W25Q64_SPI_Transmit_Data(this,&data_to_send, 1);
 	W25Q64_Set_ChipSelect_High(this);
 }
+/*
+  * @brief  Wpisanie komendy Write enable i czekanie na odblokowanie
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
 
 void W25Q64_WriteEnable_and_WaitForWriteEnableLatch(MEMORY * this){
 	while(!(W25Q64_ReadStatusRegister1(this) & W25Q64_WRITE_ENABLE_LATCH))
@@ -86,16 +132,30 @@ void W25Q64_WriteEnable_and_WaitForWriteEnableLatch(MEMORY * this){
 		W25Q64_WriteEnable(this);
 	}
 }
+/*
+  * @brief  czekanie na odblokowanie po wpisaniu komendy write enable
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
 
 void W25Q64_WaitForWriteEnableLatch(MEMORY * this){
 	while(!(W25Q64_ReadStatusRegister1(this) & W25Q64_WRITE_ENABLE_LATCH)){};
 }
-
+/*
+  * @brief  Sprawdza czy trwa oraz czeka az zakonczy sie operacja wczytywania/kasowani lub odczytywania na pamieci
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval None
+*/
 void W25Q64_WaitForWriteInProgressClear(MEMORY * this){
 	while((W25Q64_ReadStatusRegister1(this) & W25Q64_WRITE_IN_PROGRESS)){};
 }
 
-
+/*
+  * @brief  Czysci sektor pamieci
+  * @param  this - wskaznik na strukture MEMORY
+  * @param  sector_number - sektor który chcemy wyczyscic
+  * @retval HAL_Status
+*/
 HAL_StatusTypeDef W25Q64_SectorErase(MEMORY * this,uint16_t sector_number){
 	uint32_t adress;
 	adress = sector_number * SECTOR_SIZE;
@@ -118,7 +178,11 @@ HAL_StatusTypeDef W25Q64_SectorErase(MEMORY * this,uint16_t sector_number){
 
 	return status;
 }
-
+/*
+  * @brief  Czysci całą pamiec
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval HAL_Status
+*/
 HAL_StatusTypeDef W25Q64_ChipErase(MEMORY * this){
 	uint8_t data_to_send =  W25Q64_SECTOR_ERASE	;
 	HAL_StatusTypeDef status;
@@ -135,7 +199,14 @@ HAL_StatusTypeDef W25Q64_ChipErase(MEMORY * this){
 	return status;
 }
 
-
+/*
+  * @brief  Wpisuje dane do odpowiedniej strony w pamieci
+  * @param  this - wskaznik na strukture MEMORY
+  * @param  page_adress - adres strony w pamieci
+  * @param data - wskaznik na tablice z której chcemy wpisac dane
+  * @param size- rozmiar tej tablicy
+  * @retval HAL_Status
+*/
 HAL_StatusTypeDef W25Q64_PageProgram(MEMORY * this,uint32_t page_adress, uint8_t *data, uint16_t size){
 	uint8_t data_to_send[] = { 0, 0, 0, 0 };
 	HAL_StatusTypeDef status;
@@ -156,7 +227,14 @@ HAL_StatusTypeDef W25Q64_PageProgram(MEMORY * this,uint32_t page_adress, uint8_t
 
 
 
-
+/*
+  * @brief  odczytuje dane do odpowiedniej strony w pamieci
+  * @param  this - wskaznik na strukture MEMORY
+  * @param  page_adress - adres strony w pamieci
+  * @param data - wskaznik na tablice do której chcemy odczytac dane
+  * @param size- rozmiar tej tablicy
+  * @retval HAL_Status
+*/
 
 
 HAL_StatusTypeDef W25Q64_ReadDataBytes(MEMORY * this,uint32_t adress, uint8_t *data, uint16_t size){
@@ -179,10 +257,11 @@ HAL_StatusTypeDef W25Q64_ReadDataBytes(MEMORY * this,uint32_t adress, uint8_t *d
 }
 
 
-
-
-
-
+/*
+  * @brief  zwraca wartosc rejestru statusu 1
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval wartosc rejestru Status1
+*/
 uint8_t W25Q64_ReadStatusRegister1(MEMORY * this){
 	uint8_t data_to_send = W25Q64_READ_STATUS_REG1;
 	uint8_t receive_data = 0;
@@ -194,6 +273,11 @@ uint8_t W25Q64_ReadStatusRegister1(MEMORY * this){
 
 	return receive_data;
 }
+/*
+  * @brief  zwraca wartosc rejestru statusu 2
+  * @param  this - wskaznik na strukture MEMORY
+  * @retval wartosc rejestru Status2
+*/
 
 uint8_t W25Q64_ReadStatusRegister2(MEMORY * this){
 	uint8_t data_to_send = W25Q64_READ_STATUS_REG2;
@@ -206,6 +290,13 @@ uint8_t W25Q64_ReadStatusRegister2(MEMORY * this){
 
 	return receive_data;
 }
+/*
+  * @brief  Wpisujemy wartosc do rejestru statusu
+  * @param  this - wskaznik na strukture MEMORY
+  * @param reg1 - pierwsza wartosc jaka chemy wpisac do pierwszego rejestru
+  * @param reg - druga wartosc jaka chgcemy wpisac do drugiego rejestru
+  * @retval wartosc rejestru Status1
+*/
 
 void W25Q64_WriteStatusRegister(MEMORY * this,uint8_t reg1, uint8_t reg2){
 	uint8_t data_to_send[] = { 0, 0, 0 };

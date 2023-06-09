@@ -1,7 +1,7 @@
 #ifndef _DATACONVERSION_H_
 #define _DATACONVERSION_H_
 #include "stdint.h"
-
+#include "stdio.h"
 
 union DataConv{
 	double d;
@@ -9,21 +9,12 @@ union DataConv{
 
 };
 
-union DataConvF{
-	float f;
-	char u[4];
-};
+
+
 void SplitDouble(double vald,uint8_t *valbuff);
-
-
 double ReconstructDouble(uint8_t* valbuff);
-
-void Splitfloat(float valf , uint8_t *valbuff);
-
-
-float ReconstructFloat(uint8_t* valbuff);
-void SplitfloatRETARDED(float valf , uint8_t *valbuff);
-
-
-float ReconstructFloatRETARDED(uint8_t* valbuff);
+void SplitDoubleUnion(double vald,uint8_t* valbuff);
+double  ReconstructDoubleUnion(uint8_t *valbuff);
+uint8_t Hex_Chars_To_Hex(char ch1,char ch0);
+void Invert_Array(uint8_t *buff,uint16_t bufflen);
 #endif

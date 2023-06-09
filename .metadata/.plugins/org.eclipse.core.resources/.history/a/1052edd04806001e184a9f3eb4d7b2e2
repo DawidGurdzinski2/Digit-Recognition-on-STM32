@@ -1,0 +1,79 @@
+#include "menu.h"
+
+
+
+/*
+  * @brief
+  * @param  this - wskaznik na strukture ST7789V
+  * @param  X - poziomy kordynat na ekranie
+  * @param  Y - pionowy kordynat na ekranie
+  * @retval None
+*/
+static void Write_button_text(ST7789V *this){
+
+
+	ST7789_WriteChar(this, 43, 4,'S', Font_16x26, MATRIXCOL, BUTTONCOL);
+	ST7789_WriteChar(this, 4, 4,'S', Font_16x26, MATRIXCOL, BUTTONCOL);
+	ST7789_WriteChar(this, 4, 4,'S', Font_16x26, MATRIXCOL, BUTTONCOL);
+	ST7789_WriteChar(this, 4, 4,'S', Font_16x26, MATRIXCOL, BUTTONCOL);
+
+}
+
+
+
+
+/*
+  * @brief  Odświeza ekran rysujac spowrotem Menu
+  * @param  this - wskaznik na strukture ST7789V
+  * @param 	cmtx - wskaznik na strukture Chunkmatrix
+  * @retval None
+*/
+void RefreshMenu(ST7789V *this,ChunkMatrix * cmtx){
+
+	ST7789V_DrawRect(this, 0, 0, this->LCD_Width, this->LCD_Height, BACKGROUNDCOL);
+	ST7789V_DrawRect(this,8, 88, this->LCD_Width-cmtx->ChunkSize, this->LCD_Height-cmtx->ChunkSize, MATRIXCOL);
+	ST7789V_DrawRect(this,8, cmtx->ChunkSize, this->LCD_Width-cmtx->ChunkSize, 55,BUTTONCOL);
+	memset(cmtx->Chunks,0,cmtx->ChunkNum);
+	static void Write_button_text(ST7789V *this){
+}
+/*
+  * @brief  Główna pętla , decyduje ona jaka operacja wykona się kiedy klikniemy odpowiednia czaesc ekranu
+  * 		dla ekranu o pozycji wiekszej niz Y=88 kalkulowany jest który sektor został wcisniety. Dane sa
+  * 		zapisywane do struktury CHunkMatrix
+  * @param  this - wskaznik na strukture ST7789V
+  * @param 	cmtx - wskaznik na strukture Chunkmatrix
+  * @param  X - poziomy kordynat na ekranie
+  * @param  Y - pionowy kordynat na ekranie
+  * @retval zwraca czy rozpoczac obliczenia jaka liczba zotałą wpisana do ekranu 1 rozpoczyna 0 nie.
+*/
+uint8_t LoopScreen(ST7789V *this,ChunkMatrix * cmtx,uint16_t X ,uint16_t Y){
+	static uint32_t time1=0;// 1=100us
+	static uint8_t menuState=1;
+
+	if(Y>=88 &&menuState==1){
+		CalcChunk(this,cmtx,X, Y);
+
+
+	}
+	else if(Y<=20 && menuState==1&& (TIM2->CNT- time1)>10000){
+		time1=TIM2->CNT;
+		menuState=0;
+		ST7789V_DrawRect(this,0, 0,this->LCD_Width,this->LCD_Height , RELOADCOL);
+		return 1;
+
+	}
+	else if(TIM2->CNT-time1>10000){
+		RefreshMenu(this,cmtx);
+		time1=TIM2->CNT;
+
+		menuState=1;
+	}
+	if(TIM2->CNT<time1)
+		time1=0;
+
+	return 0;
+}
+
+
+
+

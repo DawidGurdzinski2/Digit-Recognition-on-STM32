@@ -1,14 +1,14 @@
 #ifndef __ST7789_GFX_H
 #define __ST7789_GFX_H
 #include "ST7789V.h"
-
+#include "fonts.h"
 
 
 
 void ST7789V_DrawPixel(ST7789V *this,uint16_t X,uint16_t Y,uint16_t color);
 void ST7789V_DrawRect(ST7789V *this,uint16_t X0,uint16_t Y0,uint16_t X1,uint16_t Y1,uint16_t color);
 void ST7789V_DrawCircle(ST7789V *this,uint16_t X ,uint16_t Y,uint16_t radius ,uint16_t color);
-
+void ST7789V_WriteChar(ST7789V * this,uint16_t X0, uint16_t Y0, char ch, FontDef font, uint16_t color, uint16_t bgcolor);
 
 //Colors
 #define BLACK      				0x0000

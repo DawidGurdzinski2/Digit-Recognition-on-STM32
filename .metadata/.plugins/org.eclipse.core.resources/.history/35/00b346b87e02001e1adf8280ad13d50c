@@ -1,0 +1,86 @@
+#ifndef _SDDRV_H_
+#define _SDDRV_H_
+
+#include "fatfs.h"
+
+//#define BUF4KB
+//#define BUF8KB
+//#define BUF12KB
+#define BUF16KB
+
+#define F4KB 4096
+#define DATASIZE 4080
+typedef  struct  _SD_Iterface{
+	FATFS fs;
+	FIL fil;
+	UINT bw,br;
+	uint8_t fresult;
+
+	#ifdef BUF4KB
+	char buffer1[F4KB];
+	#endif
+	#ifdef BUF8KB
+	char buffer1[F4KB];
+	char buffer2[F4KB];
+	#endif
+	#ifdef BUF12KB
+	char buffer1[F4KB];
+	char buffer2[F4KB];
+	char buffer3[F4KB];
+	#endif
+	#ifdef BUF16KB
+	char buffer1[F4KB];
+	char buffer2[F4KB];
+	char buffer3[F4KB];
+	char buffer4[F4KB];
+	#endif
+
+
+
+}SD_Iterface;
+
+typedef struct _NET_INFO{
+	//pierwsza warstwa
+	uint32_t page_addres_W1_start; //strona od której zaczynaja sie wagi  w pamieci
+	uint32_t page_addres_W1_vector_size; // ilosc stron potrzebnych na zapis jednego wektora
+	uint32_t W1_size; //ile takich wektorów wag
+	uint32_t W1_pages_size; //ile stron na wszystkie wagi
+	uint32_t page_addres_B1_start;//strona od kóßrej zaczynaja sie biasy w pamieci
+	uint32_t B1_values_on_page; //ile biasów znajduje sie w jednej stornie //32
+	uint32_t B1_size;//ile biasów
+	uint32_t B1_pages_size; //ile stron na wszsystki biasy
+	//druga warstwa
+	uint32_t page_addres_W2_start; //strona od której zaczynaja sie wagi  w pamieci
+	uint32_t page_addres_W2_vector_size; // ilosc stron potrzebnych na zapis jednego wektora
+	uint32_t W2_size; //ile takich wektorów wag
+	uint32_t W2_pages_size; //ile stron na wszystkie wagi
+	uint32_t page_addres_B2_start;//strona od kóßrej zaczynaja sie biasy w pamieci
+	uint32_t B2_values_on_page; //ile biasów znajduje sie w jednej stornie //32
+	uint32_t B2_size;//ile biasów
+	uint32_t B2_pages_size; //ile stron na wszsystki biasy
+
+	//trzecia  warstwa
+	uint32_t page_addres_W3_start; //strona od której zaczynaja sie wagi  w pamieci
+	uint32_t page_addres_W3_vector_size; // ilosc stron potrzebnych na zapis jednego wektora
+	uint32_t W3_size; //ile takich wektorów wag
+	uint32_t W3_pages_size; //ile stron na wszystkie wagi
+	uint32_t page_addres_B3_start;//strona od kóßrej zaczynaja sie biasy w pamieci
+	uint32_t B3_values_on_page; //ile biasów znajduje sie w jednej stornie //32
+	uint32_t B3_size;//ile biasów
+	uint32_t B3_pages_size; //ile stron na wszsystki biasy
+
+}NET_INFO;
+
+
+
+void mountSDcard(SD_Iterface * this);
+void openFile(SD_Iterface * this,const TCHAR* path,BYTE mode);
+void closeFile(SD_Iterface * this);
+void writeDataPacked(SD_Iterface * this,const TCHAR* path,BYTE mode);
+void bufclear(SD_Iterface * this);
+
+
+
+
+
+#endif

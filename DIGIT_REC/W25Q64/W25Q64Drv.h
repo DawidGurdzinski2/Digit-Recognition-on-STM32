@@ -5,7 +5,7 @@
 #include "gpio.h"
 #include "spi.h"
 
-#define PAGE_SIZE				256
+#define W25Q64_PAGE_SIZE		256
 #define SECTOR_SIZE				4096
 
 typedef struct _MEMORY

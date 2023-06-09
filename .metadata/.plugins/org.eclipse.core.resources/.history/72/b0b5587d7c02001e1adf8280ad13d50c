@@ -1,0 +1,52 @@
+#ifndef _SDDRV_H_
+#define _SDDRV_H_
+
+#include "fatfs.h"
+
+//#define BUF4KB
+//#define BUF8KB
+//#define BUF12KB
+#define BUF16KB
+
+#define F4KB 4096
+#define DATASIZE 4080
+typedef  struct  _SD_Iterface{
+	FATFS fs;
+	FIL fil;
+	UINT bw,br;
+	uint8_t fresult;
+
+	#ifdef BUF4KB
+	char buffer1[F4KB];
+	#endif
+	#ifdef BUF8KB
+	char buffer1[F4KB];
+	char buffer2[F4KB];
+	#endif
+	#ifdef BUF12KB
+	char buffer1[F4KB];
+	char buffer2[F4KB];
+	char buffer3[F4KB];
+	#endif
+	#ifdef BUF16KB
+	char buffer1[F4KB];
+	char buffer2[F4KB];
+	char buffer3[F4KB];
+	char buffer4[F4KB];
+	#endif
+
+
+
+}SD_Iterface;
+
+void mountSDcard(SD_Iterface * this);
+void openFile(SD_Iterface * this,const TCHAR* path,BYTE mode);
+void closeFile(SD_Iterface * this);
+void writeDataPacked(SD_Iterface * this,const TCHAR* path,BYTE mode);
+void bufclear(SD_Iterface * this);
+
+
+
+
+
+#endif

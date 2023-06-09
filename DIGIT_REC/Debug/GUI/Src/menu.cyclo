@@ -1,2 +1,8 @@
-menu.c:5:6:RefreshMenu	1
-menu.c:13:6:LoopScreen	8
+menu.c:10:13:Write_button_text	2
+menu.c:32:6:RefreshMenu	1
+menu.c:50:9:LoopScreen	8
+menu.c:84:6:Print_Result	2
+menu.c:103:6:Print_Info_Calc	3
+menu.c:126:6:Print_Info_MEM_CL	3
+menu.c:151:6:Print_Info_MEM_WR	3
+menu.c:178:6:Print_Proc_10	3

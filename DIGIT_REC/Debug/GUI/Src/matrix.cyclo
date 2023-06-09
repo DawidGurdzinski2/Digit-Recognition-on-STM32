@@ -1,5 +1,5 @@
-matrix.c:6:13:CreateChunkMatrix	1
-matrix.c:23:6:CalcChunk	7
-matrix.c:51:7:FillChunks	14
-matrix.c:146:6:PutDataToArray	5
-matrix.c:161:6:ColorChunks	5
+matrix.c:10:13:CreateChunkMatrix	1
+matrix.c:34:6:CalcChunk	7
+matrix.c:60:7:FillChunks	14
+matrix.c:163:6:PutDataToArray	5
+matrix.c:185:6:ColorChunks	5

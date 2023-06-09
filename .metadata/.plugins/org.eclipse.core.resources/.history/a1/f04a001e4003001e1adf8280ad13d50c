@@ -1,0 +1,51 @@
+#include "DataConversion.h"
+
+
+union DataConv data;
+
+
+void SplitDouble(double vald,uint8_t* valbuff){
+	uint8_t * pvald=(uint8_t*)&vald;
+	for(uint8_t i=0;i<8;i++){
+		valbuff[i]=pvald[i];
+	}
+}
+
+double  ReconstructDouble(uint8_t *valbuff){
+	double vald;
+	uint8_t * pvald=(uint8_t*)&vald;
+	for(uint8_t i=0;i<8;i++){
+		pvald[i]=valbuff[i];
+	}
+	return vald;
+}
+
+
+void SplitDoubleUnion(double vald,uint8_t* valbuff){
+	data.d=vald;
+	for(uint8_t i=0;i<8;i++){
+		valbuff[i]=data.u[i];
+	}
+}
+
+double  ReconstructDoubleUnion(uint8_t *valbuff){
+	for(uint8_t i=0;i<8;i++){
+		data.u[i]=valbuff[i];
+	}
+	return data.d;
+}
+
+uint8_t Hex_Chars_To_Hex(char ch1,char ch0){
+	char hex_string[] = {ch1,ch2,0}";
+	int hex_value;
+	sscanf(hex_string, "%2x", &hex_value);
+	return (uint8_t)hex_value;
+}
+
+
+
+
+
+
+
+

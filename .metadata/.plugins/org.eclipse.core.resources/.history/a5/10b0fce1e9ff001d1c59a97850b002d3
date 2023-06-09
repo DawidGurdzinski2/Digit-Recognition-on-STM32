@@ -1,0 +1,96 @@
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include "SDDrv.h"
+#include "fatfs.h"
+
+struct SD_Iterface SD;
+
+
+
+void mountSDcard(SD_Iterface * this){
+
+	this->=f_mount(&(this->fs), SDPath, 1);
+	HAL_Delay(100);
+
+}
+
+void openFile(const TCHAR* path,BYTE mode){
+
+	SD.fresult=f_open(&SD.fil, path,mode);
+}
+void closeFile(){
+
+	SD.fresult=f_close(&SD.fil);
+}
+
+
+void writeDataPacked(const TCHAR* path,BYTE mode){
+	//SD.fresult=f_open(&SD.fil, path,mode);
+	#ifdef  BUF4KB
+	SD.fresult=f_write(&SD.fil, SD.buffer1, DATASIZE, &SD.bw);
+	#endif
+	#ifdef BUF8KB
+	SD.fresult=f_write(&SD.fil, SD.buffer1, DATASIZE, &SD.bw);
+	SD.fresult=f_write(&SD.fil, SD.buffer2,  DATASIZE,&SD.bw);
+	#endif
+	#ifdef BUF12KB
+	SD.fresult=f_write(&SD.fil, SD.buffer1, DATASIZE, &SD.bw);
+	SD.fresult=f_write(&SD.fil, SD.buffer2,  DATASIZE,&SD.bw);
+	SD.fresult=f_write(&SD.fil, SD.buffer3,  DATASIZE,&SD.bw);
+	#endif
+	#ifdef BUF16KB
+	SD.fresult=f_write(&SD.fil, SD.buffer1, DATASIZE, &SD.bw);
+	SD.fresult=f_write(&SD.fil, SD.buffer2,  DATASIZE,&SD.bw);
+	SD.fresult=f_write(&SD.fil, SD.buffer3,  DATASIZE,&SD.bw);
+	SD.fresult=f_write(&SD.fil, SD.buffer4,  DATASIZE,&SD.bw);
+	#endif
+	//SD.fresult=f_close(&SD.fil);
+	//bufclear();
+}
+
+
+
+
+//FA_CREATE_ALWAYS | FA_WRITE|FA_READ    FA_OPEN_ALWAYS | FA_WRITE
+
+
+
+
+void bufclear(void){
+
+	#ifdef BUF4KB
+	for(int i=0;i<F4KB;i++){
+		SD.buffer1[i]='\0';
+	}
+	#endif
+	#ifdef BUF8KB
+	for(int i=0;i<F4KB;i++){
+		SD.buffer1[i]='\0';
+		SD.buffer2[i]='\0';
+	}
+	#endif
+	#ifdef BUF12KB
+	for(int i=0;i<F4KB;i++){
+		SD.buffer1[i]='\0';
+		SD.buffer2[i]='\0';
+		SD.buffer3[i]='\0';
+	}
+	#endif
+	#ifdef BUF16KB
+	for(int i=0;i<F4KB;i++){
+		SD.buffer1[i]='\0';
+		SD.buffer2[i]='\0';
+		SD.buffer3[i]='\0';
+		SD.buffer4[i]='\0';
+	}
+	#endif
+
+
+
+
+}
+
+

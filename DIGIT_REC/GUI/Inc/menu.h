@@ -18,8 +18,10 @@
 #endif
 
 void RefreshMenu(ST7789V *this,ChunkMatrix * cmtx);
-void LoopScreen(ST7789V *this,ChunkMatrix * cmtx,uint16_t X ,uint16_t Y);
-
-
-
+uint8_t LoopScreen(ST7789V *this,ChunkMatrix * cmtx,uint16_t X ,uint16_t Y);
+void Print_Result(ST7789V *this,uint8_t result);
+void Print_Info_Calc(ST7789V *this);
+void Print_Info_MEM_CL(ST7789V *this);
+void Print_Info_MEM_WR(ST7789V *this);
+void Print_Proc_10(ST7789V *this,uint8_t number);
 #endif /* MENU_H_ */

@@ -1,6 +1,10 @@
 #include "matrix.h"
 
-
+/*
+  * @brief  Inicjalizuje/tworzy strukture danych ChunkMatrix
+  * @param  buff wskaznik na tablice która wpisujemy do struktury
+  * @retval zwraca strukture ChunkMatrix
+*/
 
 
 ChunkMatrix CreateChunkMatrix(uint8_t * buff){
@@ -17,9 +21,16 @@ ChunkMatrix CreateChunkMatrix(uint8_t * buff){
 	return new_ChunkMatrix;
 }
 
+/*
+  * @brief  Obliczna który z obszarów 28x28 na ekranie został klikniety
+  * @param  this - wskaznik na strukture ST7789V
+  * @param 	cmtx - wskaznik na strukture Chunkmatrix
+  * @param  X - poziomy kordynat na ekranie
+  * @param  Y - pionowy kordynat na ekranie
+  * @retval None
+*/
 
 
-//column 0-27  row 0-27
 void CalcChunk(ST7789V *this,ChunkMatrix * cmtx,uint16_t X ,uint16_t Y){
 	uint8_t column =30-(X-X%cmtx->ChunkSize)/cmtx->ChunkSize;
 	uint8_t row=40-(Y-Y%cmtx->ChunkSize)/cmtx->ChunkSize;
@@ -38,16 +49,14 @@ void CalcChunk(ST7789V *this,ChunkMatrix * cmtx,uint16_t X ,uint16_t Y){
 }
 
 
-/*0-ALL
- * 1 - U D R RU RD
- * 2 - U D L LU LD
- * 4 - L LD D RD R
- * 5 - D RD R
- * 6 - L LD D
- * 7 - L LU U RU R
- * 8 - U RU R
- * 9 - L LU U
- */
+/*
+  * @brief  Sprawdza warunki graniczne czy ekran w obszarach 28x28 nie został wcisniety w rogu badz z boku.
+  * @param  this - wskaznik na strukture ST7789V
+  * @param 	cmtx - wskaznik na strukture Chunkmatrix
+  * @param  row - index wierszu obszaru  który został wcisniety
+  * @param  column - index kolumny  obszaru  który został wcisniety
+  * @retval None
+*/
 void  FillChunks(ST7789V *this,ChunkMatrix * cmtx,uint8_t row , uint8_t column){
 	uint8_t bound1=0,bound2=0;
 	if(row==0)
@@ -142,7 +151,15 @@ void  FillChunks(ST7789V *this,ChunkMatrix * cmtx,uint8_t row , uint8_t column){
 		}
 	}
 }
-
+/*
+  * @brief  Wpisuje odpowiednie wartosci do tablicy dla wcisnietego obaszatu oraz dla sasiednich obszarów
+  * @param  this - wskaznik na strukture ST7789V
+  * @param 	cmtx - wskaznik na strukture Chunkmatrix
+  * @param  row - index wierszu obszaru  który został wcisniety
+  * @param  column - index kolumny  obszaru  który został wcisniety
+  * @param  value - wartosc jaka zostaje dodana do tablicy zawierajacej informacje o danym obszarze
+  * @retval None
+*/
 void PutDataToArray(ST7789V *this,ChunkMatrix * cmtx,uint8_t row , uint8_t column,uint16_t value){
 	if(cmtx->Chunks[cmtx->MatrixRes*row+column]<=128 &&value!=255){
 		cmtx->Chunks[cmtx->MatrixRes*row+column]+=value;
@@ -156,7 +173,14 @@ void PutDataToArray(ST7789V *this,ChunkMatrix * cmtx,uint8_t row , uint8_t colum
 	ColorChunks(this,cmtx,row, column);
 }
 
-
+/*
+  * @brief Koloruje obszar na podstawie wartosci jaka ma przypisana w strukturze  ChunkMatrix
+  * @param  this - wskaznik na strukture ST7789V
+  * @param 	cmtx - wskaznik na strukture Chunkmatrix
+  * @param  row - index wierszu obszaru  który został wcisniety
+  * @param  column - index kolumny  obszaru  który został wcisniety
+  * @retval None
+*/
 
 void ColorChunks(ST7789V *this,ChunkMatrix * cmtx,uint16_t row , uint16_t column){
 	uint16_t X0=this->LCD_Width-2*cmtx->ChunkSize-cmtx->ChunkSize*column;

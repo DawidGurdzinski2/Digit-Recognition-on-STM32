@@ -1,0 +1,262 @@
+#include "ForwardPass.h"
+
+/*
+  * @brief Inicjalizuje strukture Linear czyli strukture zawierajacą informacje o parametrach
+  * warstwy sieci neuronowej
+  * @param  this - wskaznik na strukture Linear
+  * @param Net_size - ilosc neuronóœ w warstwie
+  * @retval None
+*/
+
+void Init_ForwardPass(ForwardPass * this,NET * net,NET_INFO * ndata,MEMORY * mem){
+	this->w28q64=mem;
+	this->NeuralNetwork=net;
+	this->net_data=ndata;
+}
+//
+////pierwsza warstwa
+//uint32_t page_addres_W1_start; //strona od której zaczynaja sie wagi  w pamieci               1
+//uint32_t page_addres_W1_vector_size; // ilosc stron potrzebnych na zapis jednego wektora      25
+//uint32_t W1_size; //ile takich wektorów wag                                                   1024
+//uint32_t W1_pages_size; //ile stron na wszystkie wagi 										25*1024
+//uint32_t page_addres_B1_start;//strona od kóßrej zaczynaja sie biasy w pamieci				25*1024	+1
+//uint32_t B1_pages_size; //ile stron na wszsystki biasy										32
+
+////druga warstwa
+//uint32_t page_addres_W2_start; //strona od której zaczynaja sie wagi  w pamieci				(1024*25)+(1+32)
+//uint32_t page_addres_W2_vector_size; // ilosc stron potrzebnych na zapis jednego wektora		32
+//uint32_t W2_size; //ile takich wektorów wag													512
+//uint32_t W2_pages_size; //ile stron na wszystkie wagi											32*512
+//uint32_t page_addres_B2_start;//strona od kóßrej zaczynaja sie biasy w pamieci              	(1024*25)+(1+32)+32*512
+//uint32_t B2_pages_size; //ile stron na wszsystki biasy										16
+//
+////trzecia  warstwa
+//uint32_t page_addres_W3_start; //strona od której zaczynaja sie wagi  w pamieci				(1024*25)+(1+32)+32*512 +16
+//uint32_t page_addres_W3_vector_size; // ilosc stron potrzebnych na zapis jednego wektora		16
+//uint32_t W3_size; //ile takich wektorów wag													10
+//uint32_t W3_pages_size; //ile stron na wszystkie wagi											16*10
+//uint32_t page_addres_B3_start;//strona od kóßrej zaczynaja sie biasy w pamieci				(1024*25)+(1+32)+32*512+16*10
+//uint32_t B3_pages_size; //ile stron na wszsystki biasy										1
+//
+//
+
+/*
+  * @brief WPISUJEMY do tablicy na wejsciu warstwy dane wartosci z tablicy buff
+  * @param  this - wskaznik na strukture ForwardPass
+  * @param buff - wskaznik na tablice kóra wpisujemy do tablicy DATABUF
+  * @retval None
+*/
+void FP_Load_Input(ForwardPass * this,double * buff){
+	for(uint16_t i=0;i<INPUT_SIZE;i++){
+		this->DATABUF[i]=buff[i];
+	}
+}
+
+/*
+  * @brief Odczytujemy z pamieci wektor wag pierwszej warstwy i wpisujemy go do tablicy wag WEIGHTBUFF
+  * @param  this - wskaznik na strukture ForwardPass
+  * @param 	vector number - numer wektora do zczytania z pamieci
+  * @retval None
+*/
+void FP_Load_W1_wector(ForwardPass * this,uint32_t vector_number){
+	//1023 max index wektora
+	for(uint32_t i=0;i<this->net_data->page_addres_W1_vector_size;i++){
+		uint8_t read_buffer[W25Q64_PAGE_SIZE];
+		uint8_t convert_buff[8];
+		W25Q64_ReadDataBytes(this->w28q64,W25Q64_PAGE_SIZE*(this->net_data->page_addres_W1_start +i+this->net_data->page_addres_W1_vector_size*vector_number), read_buffer, W25Q64_PAGE_SIZE);
+		for(uint32_t j=0;j<32;j++){
+			convert_buff[0]=read_buffer[i*8];
+			convert_buff[1]=read_buffer[i*8+1];
+			convert_buff[2]=read_buffer[i*8+2];
+			convert_buff[3]=read_buffer[i*8+3];
+			convert_buff[4]=read_buffer[i*8+4];
+			convert_buff[5]=read_buffer[i*8+5];
+			convert_buff[6]=read_buffer[i*8+6];
+			convert_buff[7]=read_buffer[i*8+7];
+			this->WEIGHTBUFF[i*32+j]=ReconstructDouble(convert_buff);
+		}
+	}
+}
+
+
+void FP_Load_B1(ForwardPass * this){
+	//1023 max index wektora
+	for(uint32_t i=0;i<this->net_data->B1_pages_size;i++){
+		uint8_t read_buffer[W25Q64_PAGE_SIZE];
+		uint8_t convert_buff[8];
+		W25Q64_ReadDataBytes(this->w28q64,W25Q64_PAGE_SIZE*(this->net_data->page_addres_B1_start +i), read_buffer, W25Q64_PAGE_SIZE);
+		for(uint32_t j=0;j<32;j++){
+			convert_buff[0]=read_buffer[i*8];
+			convert_buff[1]=read_buffer[i*8+1];
+			convert_buff[2]=read_buffer[i*8+2];
+			convert_buff[3]=read_buffer[i*8+3];
+			convert_buff[4]=read_buffer[i*8+4];
+			convert_buff[5]=read_buffer[i*8+5];
+			convert_buff[6]=read_buffer[i*8+6];
+			convert_buff[7]=read_buffer[i*8+7];
+			this->BIAS[i*32+j]=ReconstructDouble(convert_buff);
+		}
+	}
+}
+
+void FP_Forward_PassFirstLayer(ForwardPass * this){
+	double val;
+	FP_Load_B1(this);
+	for(uint32_t i=0;i<this->net_data->W1_size;i++){
+		val=0;
+		FP_Load_W1_wector(this, i);
+		for(uint32_t j=0;j<INPUT_SIZE;j++){
+			val+=this->DATABUF[j]*this->WEIGHTBUFF[j];
+		}
+		val+=this->BIAS[i];
+		//RELU
+		if(val<0){
+			val=0;
+		}
+		this->LAYEROUTBUF[i]=val;
+	}
+	for(uint32_t i=0;i<this->net_data->W1_size;i++){
+		this->DATABUF[i]=this->LAYEROUTBUF[i];
+	}
+}
+/*
+  * @brief Odczytujemy z pamieci wektor wag drugiej warstwy i wpisujemy go do tablicy wag WEIGHTBUFF
+  * @param  this - wskaznik na strukture ForwardPass
+  * @param 	vector number - numer wektora do zczytania z pamieci
+  * @retval None
+*/
+void FP_Load_W2_wector(ForwardPass * this,uint32_t vector_number){
+	//511 max index wektora
+	for(uint32_t i=0;i<this->net_data->page_addres_W2_vector_size;i++){
+		uint8_t read_buffer[W25Q64_PAGE_SIZE];
+		uint8_t convert_buff[8];
+		W25Q64_ReadDataBytes(this->w28q64,W25Q64_PAGE_SIZE*(this->net_data->page_addres_W2_start +i+this->net_data->page_addres_W2_vector_size*vector_number), read_buffer, W25Q64_PAGE_SIZE);
+		for(uint32_t j=0;j<32;j++){
+			convert_buff[0]=read_buffer[i*8];
+			convert_buff[1]=read_buffer[i*8+1];
+			convert_buff[2]=read_buffer[i*8+2];
+			convert_buff[3]=read_buffer[i*8+3];
+			convert_buff[4]=read_buffer[i*8+4];
+			convert_buff[5]=read_buffer[i*8+5];
+			convert_buff[6]=read_buffer[i*8+6];
+			convert_buff[7]=read_buffer[i*8+7];
+			this->WEIGHTBUFF[i*32+j]=ReconstructDouble(convert_buff);
+		}
+	}
+}
+
+void FP_Load_B2(ForwardPass * this){
+	//511 max index wektora
+	for(uint32_t i=0;i<this->net_data->B2_pages_size;i++){
+		uint8_t read_buffer[W25Q64_PAGE_SIZE];
+		uint8_t convert_buff[8];
+		W25Q64_ReadDataBytes(this->w28q64,W25Q64_PAGE_SIZE*(this->net_data->page_addres_B2_start +i), read_buffer, W25Q64_PAGE_SIZE);
+		for(uint32_t j=0;j<32;j++){
+			convert_buff[0]=read_buffer[i*8];
+			convert_buff[1]=read_buffer[i*8+1];
+			convert_buff[2]=read_buffer[i*8+2];
+			convert_buff[3]=read_buffer[i*8+3];
+			convert_buff[4]=read_buffer[i*8+4];
+			convert_buff[5]=read_buffer[i*8+5];
+			convert_buff[6]=read_buffer[i*8+6];
+			convert_buff[7]=read_buffer[i*8+7];
+			this->BIAS[i*32+j]=ReconstructDouble(convert_buff);
+		}
+	}
+}
+
+
+void FP_Forward_PassSecondLayer(ForwardPass * this){
+	double val;
+	FP_Load_B2(this);
+	for(uint32_t i=0;i<this->net_data->W2_size;i++){
+		val=0;
+		FP_Load_W1_wector(this, i);
+		for(uint32_t j=0;j<this->net_data->W1_size;j++){
+			val+=this->DATABUF[j]*this->WEIGHTBUFF[j];
+		}
+		val+=this->BIAS[i];
+		//RELU
+		if(val<0){
+			val=0;
+		}
+		this->LAYEROUTBUF[i]=val;
+	}
+	for(uint32_t i=0;i<this->net_data->W2_size;i++){
+		this->DATABUF[i]=this->LAYEROUTBUF[i];
+	}
+}
+/*
+  * @brief Odczytujemy z pamieci wektor wag trzeciej warstwy i wpisujemy go do tablicy wag WEIGHTBUFF
+  * @param  this - wskaznik na strukture ForwardPass
+  * @param 	vector number - numer wektora do zczytania z pamieci
+  * @retval None
+*/
+void FP_Load_W3_wector(ForwardPass * this,uint32_t vector_number){
+	//9 max index wektora
+	for(uint32_t i=0;i<this->net_data->page_addres_W3_vector_size;i++){
+		uint8_t read_buffer[W25Q64_PAGE_SIZE];
+		uint8_t convert_buff[8];
+		W25Q64_ReadDataBytes(this->w28q64,W25Q64_PAGE_SIZE*(this->net_data->page_addres_W3_start  +i+this->net_data->page_addres_W2_vector_size*vector_number), read_buffer, W25Q64_PAGE_SIZE);
+		for(uint32_t j=0;j<32;j++){
+			convert_buff[0]=read_buffer[i*8];
+			convert_buff[1]=read_buffer[i*8+1];
+			convert_buff[2]=read_buffer[i*8+2];
+			convert_buff[3]=read_buffer[i*8+3];
+			convert_buff[4]=read_buffer[i*8+4];
+			convert_buff[5]=read_buffer[i*8+5];
+			convert_buff[6]=read_buffer[i*8+6];
+			convert_buff[7]=read_buffer[i*8+7];
+			this->WEIGHTBUFF[i*32+j]=ReconstructDouble(convert_buff);
+		}
+	}
+}
+
+void FP_Load_B3(ForwardPass * this){
+	//511 max index wektora
+	for(uint32_t i=0;i<this->net_data->B3_pages_size;i++){
+		uint8_t read_buffer[W25Q64_PAGE_SIZE];
+		uint8_t convert_buff[8];
+		W25Q64_ReadDataBytes(this->w28q64,W25Q64_PAGE_SIZE*(this->net_data->page_addres_B3_start +i), read_buffer, W25Q64_PAGE_SIZE);
+		for(uint32_t j=0;j<32;j++){
+			convert_buff[0]=read_buffer[i*8];
+			convert_buff[1]=read_buffer[i*8+1];
+			convert_buff[2]=read_buffer[i*8+2];
+			convert_buff[3]=read_buffer[i*8+3];
+			convert_buff[4]=read_buffer[i*8+4];
+			convert_buff[5]=read_buffer[i*8+5];
+			convert_buff[6]=read_buffer[i*8+6];
+			convert_buff[7]=read_buffer[i*8+7];
+			this->BIAS[i*32+j]=ReconstructDouble(convert_buff);
+		}
+	}
+}
+
+void FP_Forward_PassThirdLayer(ForwardPass * this){
+	double val;
+	FP_Load_B2(this);
+	for(uint32_t i=0;i<this->net_data->W3_size;i++){
+		val=0;
+		FP_Load_W1_wector(this, i);
+		for(uint32_t j=0;j<this->net_data->W2_size;j++){
+			val+=this->DATABUF[j]*this->WEIGHTBUFF[j];
+		}
+		val+=this->BIAS[i];
+		//RELU
+		if(val<0){
+			val=0;
+		}
+		this->LAYEROUTBUF[i]=val;
+	}
+}
+
+uint8_t FP_Retrun_Result(ForwardPass * this){
+	uint8_t result=0;
+	for(uint8_t i=0;i<this->net_data->W3_size;i++){
+		if(this->LAYEROUTBUF[i] > this->LAYEROUTBUF[result]){
+			result=i;
+		}
+	}
+	return result;
+}
+

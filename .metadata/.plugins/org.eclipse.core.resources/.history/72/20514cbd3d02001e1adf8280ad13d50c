@@ -1,0 +1,23 @@
+#ifndef _NEURALNETWORK_H_
+#define _NEURALNETWORK_H_
+#include "stdint.h"
+
+#define INPUT_SIZE 784 //28*28
+
+typedef struct _Linear{
+	uint16_t input_num;
+	double inputs[INPUT_SIZE];
+	uint16_t nueron_num;
+}Linear;
+
+
+
+
+
+
+
+
+
+
+
+#endif

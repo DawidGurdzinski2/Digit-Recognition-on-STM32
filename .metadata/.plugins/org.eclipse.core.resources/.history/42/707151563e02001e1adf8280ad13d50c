@@ -1,0 +1,9 @@
+#include "NeuralNetwork.h"
+
+
+void Net_Init_Layer(Linear * this,uint16_t Net_size,double * weights_row){
+	this->input_num=INPUT_SIZE;
+	this->nueron_num=Net_size;
+	this->weight_row=weights_row;
+	this->bias=0;
+}

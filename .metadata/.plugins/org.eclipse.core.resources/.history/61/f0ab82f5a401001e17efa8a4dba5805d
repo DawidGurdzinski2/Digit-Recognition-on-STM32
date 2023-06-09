@@ -1,0 +1,196 @@
+#include "matrix.h"
+
+/*
+  * @brief  Inicjalizuje/tworzy strukture danych ChunkMatrix
+  * @param  buff wskaznik na tablice która wpisujemy do struktury
+  * @retval zwraca strukture ChunkMatrix
+*/
+
+
+ChunkMatrix CreateChunkMatrix(uint8_t * buff){
+	ChunkMatrix new_ChunkMatrix;
+	new_ChunkMatrix.ChunkSize=8;
+	new_ChunkMatrix.MatrixRes=28;
+	new_ChunkMatrix.ChunkNum=new_ChunkMatrix.MatrixRes*new_ChunkMatrix.MatrixRes;
+	//uint8_t buff[new_ChunkMatrix.ChunkNum];
+	new_ChunkMatrix.Chunks=buff;
+	new_ChunkMatrix.Color1=SHAD1;
+	new_ChunkMatrix.Color2=SHAD2;
+	new_ChunkMatrix.Color3=SHAD3;
+	new_ChunkMatrix.Color4=SHAD4;
+	return new_ChunkMatrix;
+}
+
+/*
+  * @brief  Obliczna który z obszarów 28x28 na ekranie został klikniety
+  * @param  buff wskaznik na tablice która wpisujemy do struktury
+  * @param  this - wskaznik na strukture ST7789V
+  * @param 	cmtx - wskaznik na strukture Chunkmatrix
+  * @param  X - poziomy kordynat na ekranie
+  * @param  Y - pionowy kordynat na ekranie
+  * @retval None
+*/
+
+
+void CalcChunk(ST7789V *this,ChunkMatrix * cmtx,uint16_t X ,uint16_t Y){
+	uint8_t column =30-(X-X%cmtx->ChunkSize)/cmtx->ChunkSize;
+	uint8_t row=40-(Y-Y%cmtx->ChunkSize)/cmtx->ChunkSize;
+	static uint8_t prevRow=0,prevCol=0;
+	if(column==0) column=1;
+	if(column>=29) column=cmtx->MatrixRes;
+	column--;
+	if(row==0) row=1;
+	if(row>=29) row=cmtx->MatrixRes;
+	row--;
+	if(prevRow!=row || prevCol!=column){
+		FillChunks(this,cmtx,row, column);
+		prevRow=row;
+		prevCol=column;
+	}
+}
+
+
+/*0-ALL
+ * 1 - U D R RU RD
+ * 2 - U D L LU LD
+ * 4 - L LD D RD R
+ * 5 - D RD R
+ * 6 - L LD D
+ * 7 - L LU U RU R
+ * 8 - U RU R
+ * 9 - L LU U
+ */
+void  FillChunks(ST7789V *this,ChunkMatrix * cmtx,uint8_t row , uint8_t column){
+	uint8_t bound1=0,bound2=0;
+	if(row==0)
+		bound1=4;
+	else if(row==27)
+		bound1=7;
+	if(column==0)
+		bound2=1;
+	else if(column==27)
+		bound2=2;
+	switch(bound1+bound2){
+		case 0:{
+			PutDataToArray(this,cmtx,row, column-1, 64); //L
+			PutDataToArray(this,cmtx,row-1, column-1, 64); //LU
+			PutDataToArray(this,cmtx,row-1, column, 64);//U
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row-1, column+1,64);//RU
+			PutDataToArray(this,cmtx,row, column+1, 64);//R
+			PutDataToArray(this,cmtx,row+1, column+1, 64);//RD
+			PutDataToArray(this,cmtx,row+1, column, 64);//D
+			PutDataToArray(this,cmtx,row+1, column-1, 64);//LD
+			break;
+		}
+		case 1:{// 1 - U D R RU RD
+			PutDataToArray(this,cmtx,row+1, column, 64); //D
+			PutDataToArray(this,cmtx,row+1, column+1, 64); //RD
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row-1, column+1, 64);//RU
+			PutDataToArray(this,cmtx,row-1, column, 64);//U
+			PutDataToArray(this,cmtx,row, column+1, 64);//R
+			break;
+		}
+		case 2:{//2 - U D L LU LD
+			PutDataToArray(this,cmtx,row+1, column, 64);//D
+			PutDataToArray(this,cmtx,row+1, column-1, 64);//LD
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row-1, column-1, 64);//LU
+			PutDataToArray(this,cmtx,row-1, column, 64);//U
+			PutDataToArray(this,cmtx,row, column-1, 64);//L
+			break;
+		}
+		case 4:{// 4 - L LD D RD R
+			PutDataToArray(this,cmtx,row, column-1, 64);//L
+			PutDataToArray(this,cmtx,row+1, column-1, 64);//LD
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row+1, column+1, 64);//RD
+			PutDataToArray(this,cmtx,row+1, column, 64);//D
+			PutDataToArray(this,cmtx,row, column+1, 64);//R
+
+			break;
+		}
+		case 5:{//5 - D RD R
+			PutDataToArray(this,cmtx,row, column+1, 64);//R
+			PutDataToArray(this,cmtx,row+1, column+1, 64);//RD
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row+1, column, 64);//D
+			break;
+		}
+		case 6:{// 6 - L LD D
+			PutDataToArray(this,cmtx,row, column-1, 64);//L
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row+1, column-1, 64);//LD
+			PutDataToArray(this,cmtx,row+1, column, 64);//D
+			break;
+		}
+		case 7:{//7 - L LU U RU R
+			PutDataToArray(this,cmtx,row, column-1, 64);//L
+			PutDataToArray(this,cmtx,row-1, column-1, 64);//LU
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row-1, column+1, 64);//RU
+			PutDataToArray(this,cmtx,row, column+1, 64);//R
+			PutDataToArray(this,cmtx,row-1, column, 64);//U
+			break;
+		}
+		case 8:{//8 - U RU R
+			PutDataToArray(this,cmtx,row-1, column, 64);//U
+			PutDataToArray(this,cmtx,row-1, column+1, 64);//RU
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row, column+1, 64);//R
+			break;
+		}
+		case 9:{//9 - L LU U
+			PutDataToArray(this,cmtx,row-1, column, 64);//U
+			PutDataToArray(this,cmtx,row-1, column-1, 64);//LU
+			PutDataToArray(this,cmtx,row, column, 255);
+			PutDataToArray(this,cmtx,row, column-1, 64);//L
+			break;
+		}
+		default:{
+			PutDataToArray(this,cmtx,row, column, 255);
+			break;
+		}
+	}
+}
+
+void PutDataToArray(ST7789V *this,ChunkMatrix * cmtx,uint8_t row , uint8_t column,uint16_t value){
+	if(cmtx->Chunks[cmtx->MatrixRes*row+column]<=128 &&value!=255){
+		cmtx->Chunks[cmtx->MatrixRes*row+column]+=value;
+	}
+	else if(cmtx->Chunks[cmtx->MatrixRes*row+column]<=192 && value!=255){
+		cmtx->Chunks[cmtx->MatrixRes*row+column]+=value-1;
+	}
+	else{
+		cmtx->Chunks[cmtx->MatrixRes*row+column]=255;
+	}
+	ColorChunks(this,cmtx,row, column);
+}
+
+
+
+void ColorChunks(ST7789V *this,ChunkMatrix * cmtx,uint16_t row , uint16_t column){
+	uint16_t X0=this->LCD_Width-2*cmtx->ChunkSize-cmtx->ChunkSize*column;
+	uint16_t X1=this->LCD_Width-cmtx->ChunkSize-cmtx->ChunkSize*column;
+	uint16_t Y0=this->LCD_Height-cmtx->ChunkSize-cmtx->ChunkSize*row;
+	uint16_t Y1=this->LCD_Height-2*cmtx->ChunkSize-cmtx->ChunkSize*row;
+	if(cmtx->Chunks[cmtx->MatrixRes*row+column]==64){
+		 ST7789V_DrawRect(this,X0, Y0, X1, Y1, cmtx->Color4);
+	}
+	else if(cmtx->Chunks[cmtx->MatrixRes*row+column]==128){
+		 ST7789V_DrawRect(this,X0, Y0, X1, Y1,cmtx->Color3);
+	}
+	else if(cmtx->Chunks[cmtx->MatrixRes*row+column]==192){
+		 ST7789V_DrawRect(this,X0, Y0, X1, Y1, cmtx->Color2);
+	}
+	else if(cmtx->Chunks[cmtx->MatrixRes*row+column]==255){
+		 ST7789V_DrawRect(this,X0, Y0, X1, Y1, cmtx->Color1);
+	}
+	else{
+		 ST7789V_DrawRect(this,X0, Y0, X1, Y1, YELLOW);
+	}
+}
+
+
+

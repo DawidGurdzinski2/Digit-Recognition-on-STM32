@@ -1,0 +1,8 @@
+#include "NeuralNetwork.h"
+
+
+void Net_Init_Layer(Linear * this){
+
+
+
+}

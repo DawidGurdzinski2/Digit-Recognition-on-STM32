@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <XPT2046.h>
 
+
+///kod z githuba nie moj nie wlicza sie w ocene////
+//XD tak mi sie wydaje//
+
 #if (ORIENTATION == 0)
 #define READ_X 0xD0
 #define READ_Y 0x90

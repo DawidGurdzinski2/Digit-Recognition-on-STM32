@@ -1,2 +1,8 @@
-../GUI/Src/menu.c:5:6:RefreshMenu	24	static
-../GUI/Src/menu.c:13:6:LoopScreen	32	static
+../GUI/Src/menu.c:10:13:Write_button_text	64	static
+../GUI/Src/menu.c:32:6:RefreshMenu	24	static
+../GUI/Src/menu.c:50:9:LoopScreen	32	static
+../GUI/Src/menu.c:84:6:Print_Result	64	static
+../GUI/Src/menu.c:103:6:Print_Info_Calc	72	static
+../GUI/Src/menu.c:126:6:Print_Info_MEM_CL	72	static
+../GUI/Src/menu.c:151:6:Print_Info_MEM_WR	72	static
+../GUI/Src/menu.c:178:6:Print_Proc_10	48	static

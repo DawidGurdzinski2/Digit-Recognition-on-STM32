@@ -1,0 +1,18 @@
+#ifndef _FORWARDPASS_H_
+#define _FORWARDPASS_H_
+#include "NeuralNetwork.h"
+
+
+typedef struct _ForwardPass{
+	NET * NeuralNetwork;
+	double DATABUF[];
+	double WEIGHTBUFF[];
+	double BIAS;
+
+
+}ForwardPass;
+
+
+
+
+#endif

@@ -1,0 +1,94 @@
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include "SDDrv.h"
+#include "fatfs.h"
+
+
+
+//testowo
+//uint32_t page_addres_W1_start; //strona od której zaczynaja sie wagi  w pamieci               1
+//uint32_t page_addres_W1_vector_size; // ilosc stron potrzebnych na zapis jednego wektora      25
+//uint32_t W1_size; //ile takich wektorów wag                                                   1024
+//uint32_t W1_pages_size; //ile stron na wszystkie wagi 										25*1024
+//uint32_t page_addres_B1_start;//strona od kóßrej zaczynaja sie biasy w pamieci				25*1024	+1
+//uint32_t B1_pages_size; //ile stron na wszsystki biasy										32
+
+////druga warstwa
+//uint32_t page_addres_W2_start; //strona od której zaczynaja sie wagi  w pamieci				(1024*25)+(1+32)
+//uint32_t page_addres_W2_vector_size; // ilosc stron potrzebnych na zapis jednego wektora		32
+//uint32_t W2_size; //ile takich wektorów wag													512
+//uint32_t W2_pages_size; //ile stron na wszystkie wagi											32*512
+//uint32_t page_addres_B2_start;//strona od kóßrej zaczynaja sie biasy w pamieci              	(1024*25)+(1+32)+32*512
+//uint32_t B2_pages_size; //ile stron na wszsystki biasy										16
+
+////trzecia  warstwa
+//uint32_t page_addres_W3_start; //strona od której zaczynaja sie wagi  w pamieci				(1024*25)+(1+32)+32*512 +16
+//uint32_t page_addres_W3_vector_size; // ilosc stron potrzebnych na zapis jednego wektora		16
+//uint32_t W3_size; //ile takich wektorów wag													10
+//uint32_t W3_pages_size; //ile stron na wszystkie wagi											16*10
+//uint32_t page_addres_B3_start;//strona od kóßrej zaczynaja sie biasy w pamieci				(1024*25)+(1+32)+32*512+16*10
+//uint32_t B3_pages_size; //ile stron na wszsystki biasy										1
+
+
+
+void INIT_NETINFO(NET_INFO* this){
+
+	//TU BEDZIE SIE ZCZYTYWAC DANE Z 1 STRONY KARY SD
+	//WARTOSCI PONIZEJ SA TESTOWE
+	this->page_addres_W1_start=1;
+	this->page_addres_W1_vector_size=25;
+	this->W1_size=1024;
+	this->W1_pages_size=25*1024;
+	this->page_addres_B1_start=25*1024+1;
+	this->B1_pages_size=32;
+
+	this->page_addres_W2_start=(1024*25)+(1+32);
+	this->page_addres_W2_vector_size=32;
+	this->W2_size=512;
+	this->W2_pages_size=32*512;
+	this->page_addres_B2_start=(1024*25)+(1+32)+32*512;
+	this->B2_pages_size=16;
+
+	this->page_addres_W3_start=(1024*25)+(1+32)+32*512 +16;
+	this->page_addres_W3_vector_size=16;
+	this->W3_size=10;
+	this->W3_pages_size=16*10;
+	this->page_addres_B3_start=(1024*25)+(1+32)+32*512+16*10;
+	this->B3_pages_size=1;
+}
+
+
+void mountSDcard(SD_Iterface * this){
+
+	this->fresult=f_mount(&(this->fs), SDPath, 0);
+	HAL_Delay(100);
+
+}
+
+void openFile(SD_Iterface * this,const TCHAR* path,BYTE mode){
+
+	this->fresult=f_open(&(this->fil), path,mode);
+}
+void closeFile(SD_Iterface * this){
+
+	this->fresult=f_close(&(this->fil));
+}
+
+
+void writeDataPacked(SD_Iterface * this,const TCHAR* path,BYTE mode){
+	this->fresult=f_write(&(this->fil), this->buffer,  512, &(this->bw));
+}
+
+
+void readDataPacked(SD_Iterface * this,const TCHAR* path,UINT size){
+	this->fresult=f_read(&(this->fil), this->buffer,  size, &(this->br));
+
+}
+
+
+
+
+

@@ -1,0 +1,349 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  * @authors        : Dawid Gurdzinski , Lukasz Slowik
+  * @Project        : Rozpoznawanie pisma naturalnego/cyfr
+  * @Description    : Na ekranie dotykowym bedzie możliwość napisania/narysowania
+  * 				  cyfry w zakresie od 0-9 gdzie nastpenie popezez model sieci
+  * 				  neuronowej wgranej moduł pamięci W25Q64 zostanie zklasyfikowana
+  * 				  cyfra gdzie na ekranie wyświetlon
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "dma.h"
+#include "fatfs.h"
+#include "sdio.h"
+#include "spi.h"
+#include "tim.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include <string.h>
+#include "ST7789V.h"
+#include "ST7789V_GFX.h"
+#include "XPT2046.h"
+#include "matrix.h"
+#include "menu.h"
+#include "W25Q64Drv.h"
+#include "SDDrv.h"
+#include "DataConversion.h"
+#include "NeuralNetwork.h"
+#include "ForwardPass.h"
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+/*
+  * @brief  Wpisujemy wartosc do rejestru statusu
+  * @param  this - wskaznik na strukture MEMORY
+  * @param reg1 - pierwsza wartosc jaka chemy wpisac do pierwszego rejestru
+  * @param reg - druga wartosc jaka chgcemy wpisac do drugiego rejestru
+  * @retval wartosc rejestru Status1
+*/
+
+//struktury
+ChunkMatrix DataStruct;
+ST7789V ST7789VDrv;
+MEMORY w25q64;
+SD_Iterface SDcard;
+Linear layer1,layer2,layer3;
+NET DNN;
+NET_INFO net_info;
+ForwardPass SI_algorithm;
+
+//zmienne
+uint8_t buff[784];
+uint16_t PosX,PosY;
+volatile uint8_t forwardpropagation=0;
+double INPUT[784];
+
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_SPI1_Init();
+  MX_SPI3_Init();
+  MX_SPI4_Init();
+  MX_TIM2_Init();
+  MX_SDIO_SD_Init();
+  MX_FATFS_Init();
+  /* USER CODE BEGIN 2 */
+  //inicjalizacja timera do odliczania czasu
+  HAL_TIM_Base_Start(&htim2);//1cnt =100 us
+  //inicjalizacja ekranu
+  ST7789V_Init(&ST7789VDrv);
+  //inicjalizacja struktury z pamiecia zawierajaca wartosci obaszrów 28x28
+  DataStruct=CreateChunkMatrix(buff);
+  //inicjalizacja pamieci
+  W25Q64_Init(&w25q64);
+  //odswiezenie/wyswietlenie menu na ekranie
+  RefreshMenu(&ST7789VDrv, &DataStruct);
+
+
+
+
+
+
+
+//inicjalizacja karty sd
+
+  char hex_string[] = "1f";
+    int hex_value;
+    sscanf(hex_string, "%2x", &hex_value);
+    printf("%d\n", hex_value);
+
+    uint8_t hex=Hex_Chars_To_Hex('1', 'f');
+
+    mountSDcard(&SDcard);
+   char myfilename[]="NET_WB.txt";
+   openFile(&SDcard,myfilename, FA_OPEN_EXISTING | FA_READ);
+   readDataPacked(&SDcard, myfilename,  512);
+   readDataPacked(&SDcard, myfilename,  512);
+   readDataPacked(&SDcard, myfilename,  512);
+
+
+
+//inicjalizacja sieci
+
+  Init_Layer(&layer1,784, 1024);
+  Init_Layer(&layer2,1024, 512);
+  Init_Layer(&layer3, 512,10);
+  Init_Net(&DNN, &layer1, &layer2, &layer3);
+  Init_ForwardPass(&SI_algorithm, &DNN, &net_info,&w25q64);
+
+
+
+//uint8_t pagebuff[256];
+//uint8_t testarr2[8]={180,200,118,190,159,26,15,64};
+//for(uint8_t i=0;i<32;i++){
+//	pagebuff[i*8]=testarr2[0];
+//	pagebuff[i*8+1]=testarr2[1];
+//	pagebuff[i*8+2]=testarr2[2];
+//	pagebuff[i*8+3]=testarr2[3];
+//	pagebuff[i*8+4]=testarr2[4];
+//	pagebuff[i*8+5]=testarr2[5];
+//	pagebuff[i*8+6]=testarr2[6];
+//	pagebuff[i*8+7]=testarr2[7];
+//
+//}
+	uint8_t program_memeory =0;
+	if(program_memeory){
+		for(uint32_t i=0;i<2638;i++){
+			W25Q64_SectorErase(&w25q64,i);
+		}
+
+		for(uint32_t i=0;i<42203;i++){
+			W25Q64_PageProgram(&w25q64,W25Q64_PAGE_SIZE*i, pagebuff, 256);
+		}
+	}
+
+
+
+
+
+// char myfilename[]="CHA.txt";
+//  openFile(&SDcard,myfilename, FA_OPEN_APPEND | FA_WRITE | FA_READ);
+//  SDcard.buffer1[1]='W';
+//  SDcard.buffer1[2]='2';
+//  SDcard.buffer1[3]='R';
+//  SDcard.buffer1[4]='W';
+//  SDcard.buffer1[5]='1';
+//  SDcard.buffer1[6]='6';
+//  writeDataPacked(&SDcard,myfilename, FA_OPEN_APPEND | FA_WRITE | FA_READ);
+//  closeFile(&SDcard);
+
+////test pamieci flash
+//  uint8_t read_buffer[256];
+//  uint8_t write_buffer[]="test";
+// // W25Q64_SectorErase(&w25q64,0);
+//  W25Q64_ReadDataBytes(&w25q64,0x0000, read_buffer, 256);
+//  W25Q64_PageProgram(&w25q64,0x0000, write_buffer, sizeof(write_buffer));
+//  W25Q64_ReadDataBytes(&w25q64,0x0000, read_buffer, 256);
+//  W25Q64_ReadDataBytes(&w25q64,W25Q64_PAGE_SIZE, read_buffer, W25Q64_PAGE_SIZE);
+//  W25Q64_ReadDataBytes(&w25q64,255, read_buffer, 256);
+//test konwersji danych
+
+//double test=3.11;
+//uint8_t testarr[8];
+//uint8_t testarr2[8]={180,200,118,190,159,26,15,64};//3.8879
+//double testout;
+//
+//
+//SplitDoubleUnion(test, testarr);
+//testout=ReconstructDoubleUnion(testarr2);
+//
+//
+
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {		//XPT2046 Pooluje dane  adc wykonuje funckje loop jka kordynaty sie mieniły
+	  if(XPT2046_TouchGetCoordinates(&PosX,&PosY)){
+		  forwardpropagation=LoopScreen(&ST7789VDrv, &DataStruct, PosX, PosY);
+		  if(forwardpropagation){
+			  FP_Forward_PassFirstLayer(&SI_algorithm);
+			  FP_Forward_PassSecondLayer(&SI_algorithm);
+			  FP_Forward_PassThirdLayer(&SI_algorithm);
+		  }
+
+	 	}
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Configure the main internal regulator output voltage
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 12;
+  RCC_OscInitStruct.PLL.PLLN = 96;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */

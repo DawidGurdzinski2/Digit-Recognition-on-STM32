@@ -1,0 +1,20 @@
+#ifndef _DATACONVERSION_H_
+#define _DATACONVERSION_H_
+#include "stdint.h"
+#include "stdio.h"
+
+union DataConv{
+	double d;
+	char u[8];
+
+};
+
+
+
+void SplitDouble(double vald,uint8_t *valbuff);
+double ReconstructDouble(uint8_t* valbuff);
+void SplitDoubleUnion(double vald,uint8_t* valbuff);
+double  ReconstructDoubleUnion(uint8_t *valbuff);
+uint8_t Hex_Chars_To_Hex(uint8_t ch1,uint8_t ch0);
+
+#endif

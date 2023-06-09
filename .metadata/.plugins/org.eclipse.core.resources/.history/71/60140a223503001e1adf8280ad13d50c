@@ -1,0 +1,96 @@
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include "SDDrv.h"
+#include "fatfs.h"
+
+
+
+//testowo
+void INIT_NETINFO(NET_INFO* this){
+	this->page_addres_W1_start=0;
+	this->page_addres_W1_vector_size=0;
+	this->W1_pages_size=0;
+	this->W1_size=0;
+	this->page_addres_B1_start=0;
+	this->B1_pages_size=0;
+	this->B1_size=0;
+	this->B1_values_on_page=0;
+
+
+
+
+}
+
+
+void mountSDcard(SD_Iterface * this){
+
+	this->fresult=f_mount(&(this->fs), SDPath, 1);
+	HAL_Delay(100);
+
+}
+
+void openFile(SD_Iterface * this,const TCHAR* path,BYTE mode){
+
+	this->fresult=f_open(&(this->fil), path,mode);
+}
+void closeFile(SD_Iterface * this){
+
+	this->fresult=f_close(&(this->fil));
+}
+
+
+void writeDataPacked(SD_Iterface * this,const TCHAR* path,BYTE mode){
+	this->fresult=f_write(&(this->fil), this->buffer1,  DATASIZE, &(this->bw));
+}
+
+
+void readDataPacked(SD_Iterface * this,const TCHAR* path,BYTE mode){
+	this->fresult=f_write(&(this->fil), this->buffer1,  DATASIZE, &(this->bw));
+}
+
+
+
+//FA_CREATE_ALWAYS | FA_WRITE|FA_READ    FA_OPEN_ALWAYS | FA_WRITE
+
+
+
+
+void bufclear(SD_Iterface * this){
+
+	#ifdef BUF4KB
+	for(int i=0;i<F4KB;i++){
+		SD.buffer1[i]='\0';
+	}
+	#endif
+	#ifdef BUF8KB
+	for(int i=0;i<F4KB;i++){
+		SD.buffer1[i]='\0';
+		SD.buffer2[i]='\0';
+	}
+	#endif
+	#ifdef BUF12KB
+	for(int i=0;i<F4KB;i++){
+		SD.buffer1[i]='\0';
+		SD.buffer2[i]='\0';
+		SD.buffer3[i]='\0';
+	}
+	#endif
+	#ifdef BUF16KB
+	for(int i=0;i<F4KB;i++){
+
+		this->buffer1[i]='\0';
+		this->buffer2[i]='\0';
+		this->buffer3[i]='\0';
+		this->buffer4[i]='\0';
+	}
+	#endif
+
+
+
+
+}
+
+

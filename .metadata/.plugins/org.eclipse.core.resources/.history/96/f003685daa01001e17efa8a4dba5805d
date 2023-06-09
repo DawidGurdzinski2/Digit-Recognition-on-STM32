@@ -1,0 +1,26 @@
+#include "DataConversion.h"
+
+
+//union DataConv data;
+//union DataConvF dataf;
+
+void SplitDouble(double vald,uint8_t* valbuff){
+	uint8_t * pvald=(uint8_t*)&vald;
+	for(uint8_t i=0;i<8;i++){
+		valbuff[i]=pvald[i];
+	}
+}
+
+double  ReconstructDouble(uint8_t *valbuff){
+	double vald;
+	uint8_t * pvald=(uint8_t*)&vald;
+	for(uint8_t i=0;i<8;i++){
+		pvald[i]=valbuff[i];
+	}
+	return vald;
+}
+
+
+
+
+

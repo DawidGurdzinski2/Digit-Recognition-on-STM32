@@ -1,0 +1,7 @@
+#include "NeuralNetwork.h"
+
+
+typedef struct _Linear{
+
+
+}Linear;

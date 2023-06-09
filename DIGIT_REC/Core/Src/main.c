@@ -7,7 +7,7 @@
   * @Project        : Rozpoznawanie pisma naturalnego/cyfr
   * @Description    : Na ekranie dotykowym bedzie możliwość napisania/narysowania
   * 				  cyfry w zakresie od 0-9 gdzie nastpenie popezez model sieci
-  * 				  neuronowej wgranej moduł pamięci W25Q64 zostanie zklasyfikowana
+  * 				  neuronowej wgranej na moduł pamięci W25Q64 zostanie zklasyfikowana
   * 				  cyfra gdzie na ekranie wyświetlon
   ******************************************************************************
   * @attention
@@ -25,6 +25,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dma.h"
+#include "fatfs.h"
+#include "sdio.h"
 #include "spi.h"
 #include "tim.h"
 #include "gpio.h"
@@ -38,6 +40,10 @@
 #include "matrix.h"
 #include "menu.h"
 #include "W25Q64Drv.h"
+#include "SDDrv.h"
+#include "DataConversion.h"
+#include "NeuralNetwork.h"
+#include "ForwardPass.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -47,6 +53,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define SD_PROBLEM
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -57,15 +64,24 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-volatile float testf = 5.33;
-uint8_t buff[784];
+
+
+
+//struktury
 ChunkMatrix DataStruct;
 ST7789V ST7789VDrv;
-
-uint16_t PosX,PosY;
-uint16_t Xmod,Ymod;
-uint16_t Xrest,Yrest;
 MEMORY w25q64;
+SD_Iterface SDcard;
+Linear layer1,layer2,layer3;
+NET DNN;
+NET_INFO net_info;
+ForwardPass SI_algorithm;
+
+//zmienne
+uint8_t buff[784];
+uint16_t PosX,PosY;
+volatile uint8_t forwardpropagation=0;
+double INPUT[784];
 
 
 /* USER CODE END PV */
@@ -114,43 +130,97 @@ int main(void)
   MX_SPI3_Init();
   MX_SPI4_Init();
   MX_TIM2_Init();
+  MX_SDIO_SD_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
+  //inicjalizacja timera do odliczania czasu
   HAL_TIM_Base_Start(&htim2);//1cnt =100 us
+  //inicjalizacja ekranu
   ST7789V_Init(&ST7789VDrv);
+  //inicjalizacja struktury z pamiecia zawierajaca wartosci obaszrów 28x28
   DataStruct=CreateChunkMatrix(buff);
+  //inicjalizacja pamieci
+  W25Q64_Init(&w25q64);
+  //odswiezenie/wyswietlenie menu na ekranie
   RefreshMenu(&ST7789VDrv, &DataStruct);
 
-  uint8_t read_buffer[256];
-  uint8_t write_buffer[]="test";
-  W25Q64_Init(&w25q64);
-
-  double test = 5.33;
-  double testout=0;
-  uint8_t testarr[8];
-
-  SplitDouble(test, testarr);
-  testout=ReconstructDouble(testarr);
 
 
-  float testoutf=0;
-  float test2f=5.3;
-  uint8_t testarrf[4];
 
-  Splitfloat(test2f, testarrf);
-  testoutf=ReconstructFloat(testarrf);
 
-  W25Q64_SectorErase(&w25q64,0);
-  W25Q64_ReadDataBytes(&w25q64,0x0000, read_buffer, 256);
-  W25Q64_PageProgram(&w25q64,0x0000, write_buffer, sizeof(write_buffer));
-  W25Q64_ReadDataBytes(&w25q64,0x0000, read_buffer, 256);
+   ///////////////////////////////////////////////////////////////////
+#ifdef SD_PROBLEM
+//wgrywanie danych z karty sd nie ma
+	uint8_t pagebuff[256];
+	uint8_t testarr2[8];
+	SplitDouble(0.012, testarr2);
+
+	for(uint8_t i=0;i<32;i++){
+		pagebuff[i*8]=testarr2[0];
+		pagebuff[i*8+1]=testarr2[1];
+		pagebuff[i*8+2]=testarr2[2];
+		pagebuff[i*8+3]=testarr2[3];
+		pagebuff[i*8+4]=testarr2[4];
+		pagebuff[i*8+5]=testarr2[5];
+		pagebuff[i*8+6]=testarr2[6];
+		pagebuff[i*8+7]=testarr2[7];
+
+	}
+
+
+#endif
+///////////////////////////////////////////////////////////////////
+
+	//wczytywanie oraz czyszczenie pamieci
+	uint8_t program_memeory =0;
+	if(program_memeory){
+		//czyszczenie pamieci wraz z paskem postepu (warto bo czyszczenie trawa okolo 5 minut)
+		Print_Info_MEM_CL(&ST7789VDrv);
+		for(uint32_t i=0;i<2638;i++){
+			W25Q64_SectorErase(&w25q64,i);
+			Print_Proc_10(&ST7789VDrv, i/200);
+		}
+		Print_Info_MEM_WR(&ST7789VDrv);
+		for(uint32_t i=0;i<42203;i++){
+		//wczytywnaie danych do pamieci wraz z paskem postepu
+			W25Q64_PageProgram(&w25q64,W25Q64_PAGE_SIZE*i, pagebuff, 256);
+			Print_Proc_10(&ST7789VDrv, i/3200);
+		}
+	}
+	//odswiezamy menu
+	RefreshMenu(&ST7789VDrv, &DataStruct);
+	//inicjalizujemy siec neuronowa
+	INIT_NETINFO(&net_info);
+	Init_Net(&DNN, &layer1, &layer2, &layer3);
+	Init_ForwardPass(&SI_algorithm, &DNN, &net_info,&w25q64);
+
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
-  {
+  {		//XPT2046 Pooluje dane  adc wykonuje funckje loop jka kordynaty sie mieniły
 	  if(XPT2046_TouchGetCoordinates(&PosX,&PosY)){
-		  LoopScreen(&ST7789VDrv, &DataStruct, PosX, PosY);
+		  forwardpropagation=LoopScreen(&ST7789VDrv, &DataStruct, PosX, PosY);
+		  if(forwardpropagation){
+			  //odwrocenie tablicy
+			  Invert_Array(buff, 784);
+			  Print_Info_Calc(&ST7789VDrv);
+			  //obliczanie sieci
+			  //rysyowane prostokaty imituja pasek ladowania
+			  FP_Load_Input(&SI_algorithm, buff);
+			  ST7789V_DrawRect(&ST7789VDrv, 40, 210, 80 ,250, RED);
+			  FP_Forward_PassFirstLayer(&SI_algorithm);
+			  ST7789V_DrawRect(&ST7789VDrv, 100, 210, 140 ,250, RED);
+			  FP_Forward_PassSecondLayer(&SI_algorithm);
+			  ST7789V_DrawRect(&ST7789VDrv, 160, 210, 200 ,250, RED);
+			  FP_Forward_PassThirdLayer(&SI_algorithm);
+			  uint8_t result =FP_Retrun_Result(&SI_algorithm);
+			  //wyswietlenie wyniku
+			  Print_Result(&ST7789VDrv, result);
+		  }
 
 	 	}
     /* USER CODE END WHILE */

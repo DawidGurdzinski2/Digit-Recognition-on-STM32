@@ -1,0 +1,29 @@
+#include "NeuralNetwork.h"
+
+/*
+  * @brief Inicjalizuje strukture Linear czyli strukture zawierajacą informacje o parametrach
+  * warstwy sieci neuronowej
+  * @param  this - wskaznik na strukture Linear
+  * @param X - wspołzedne X pixela
+  * @param Y - wspołzedne Y pixela
+  * @param color - kolor pixela
+  * @retval None
+*/
+void Init_Layer(Linear * this,uint16_t Net_size){
+	this->input_num=INPUT_SIZE;
+	this->nueron_num=Net_size;
+}
+/*
+  * @brief rysuje pixel na ekranie
+  * @param  this - wskaznik na strukture NET
+  * @param X - wspołzedne X pixela
+  * @param Y - wspołzedne Y pixela
+  * @param color - kolor pixela
+  * @retval None
+*/
+void Init_Net(NET * this,Linear * lin1,Linear* lin2,Linear * lin3){
+	this->first_Layer=lin1;
+	this->second_Layer=lin2;
+	this->third_Layer=lin3;
+}
+

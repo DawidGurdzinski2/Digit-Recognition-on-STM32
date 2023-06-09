@@ -1,0 +1,32 @@
+#ifndef _FORWARDPASS_H_
+#define _FORWARDPASS_H_
+#include "NeuralNetwork.h"
+
+
+#define MAX_DATA_VECTOR_SIZE 2000
+
+typedef struct _ForwardPass{
+	NET * NeuralNetwork;
+	double DATABUF[MAX_DATA_VECTOR_SIZE];
+	double WEIGHTBUFF[MAX_DATA_VECTOR_SIZE];
+	double BIAS;
+
+	//pierwsza warstwa
+	uint32_t page_addres_W1_start; //strona od której zaczynaja sie wagi  w pamieci
+	uint32_t page_addres_W1_vector_size; // ilosc stron potrzebnych na zapis jednego wektora
+	uint32_t W1_size; //ile takich wektorów wag
+	uint32_t W1_pages_size; //ile stron na wszystkie wagi
+	uint32_t page_addres_B1_start;//strona od kóßrej zaczynaja sie biasy w pamieci
+	uint32_t B1_values_on_page; //ile biasów znajduje sie w jednej stornie //32
+	uint32_t B1_size;//ile biasów
+	uint32_t B1_pages_size; //ile stron na wszsystki biasy
+
+	uint32_t page_addres_B1_start;
+	uint32_t
+
+}ForwardPass;
+
+
+
+
+#endif
